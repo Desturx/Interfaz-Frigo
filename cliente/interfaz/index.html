@@ -5,32 +5,13 @@
 	<meta charset="utf8">
 	<title>Interfaz de Frigorífico</title>
 	<script src="../electro.js"></script>
+	<script src="javascript.js"></script>
 </head>
 
 <body>
-	<button onclick="encenderLuzRefrigerador()">Encender luz refrigerador</button>
-	<button onclick="apagarLuzRefrigerador()">Apagar luz refrigerador</button>
-	<script>
-		var frigo = new Electro();
-		frigo.on("connect", function () {
-			console.log("Ya estoy conectado con el frigorifico!!!")
-			console.log("Con este hay " + frigo.clientes + " clientes conectados");
+	<button onclick="encenderLuzRefrigerador();">Encender luz refrigerador</button>
+	<button onclick="apagarLuzRefrigerador();">Apagar luz refrigerador</button>
 
-			function encenderLuzRefrigerador() {
-				frigo.refrigeradorLuz = true;
-			}
-
-			function apagarLuzRefrigerador() {
-				frigo.refrigeradorLuz = false;
-			}
-
-			// Activar la luz del refrigerador cuando se abre la puerta
-			frigo.on("refrigeradorPuerta", function (abierta) {
-				console.log("Puerta:", abierta);
-				frigo.refrigeradorLuz = abierta;
-			});
-		});
-	</script>
 </body>
 
 </html>
