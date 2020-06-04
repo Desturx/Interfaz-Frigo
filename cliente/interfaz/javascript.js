@@ -9,13 +9,15 @@ frigo.on("connect", function () {
 });
 
 // Función para encender la luz del frigo
-function encenderLuzRefrigerador() {
+function encenderLuzRefrigerador() 
+{
     frigo.refrigeradorLuz = true;
     console.log("luz encendida");
 }
 
 // Función para apagar la pantalla del frigo
-function apagarLuzRefrigerador() {
+function apagarLuzRefrigerador() 
+{
     frigo.refrigeradorLuz = false;
     console.log("luz apagada");
 }
@@ -27,8 +29,25 @@ frigo.on("refrigeradorPuerta", function (abierta) {
     frigo.refrigeradorLuz = abierta;
 });
 
+//Comprobando el estado de la pantalla
+frigo.on("frigorificoPantalla", function(estado){
+    console.log("Estado de la pantalla: ", estado);
+    /* Si el estado es 1 el reloj desaparece y se cambia a la pantalla de inicio*/
+    if(estado == 1) { 
+        document.getElementById("pantallaReloj").style.display = "none";
+    }
 
-function mostrarHora() {
+
+});
+
+
+function mostrarFecha()
+{
+    var dt = new Date();
+    document.getElementById("fechaReloj").innerHTML = dt.toLocaleDateString();
+}
+function mostrarHora() 
+{
     var tiempo = new Date();
     var h = tiempo.getHours();
     var m = tiempo.getMinutes();
@@ -51,4 +70,5 @@ function mostrarHora() {
     document.getElementById("horaReloj").innerHTML = hora; // este no funciona en firefox, por eso se usab también la de abajo
     document.getElementById("horaReloj").textContent = hora;
     setTimeout(mostrarHora, 1000);
+    
 }

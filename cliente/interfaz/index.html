@@ -16,19 +16,21 @@
 	<button onclick="encenderLuzRefrigerador();">Encender luz refrigerador</button>
 	<button onclick="apagarLuzRefrigerador();">Apagar luz refrigerador</button>
 	-->
-	<div class="container" id="pantallaReloj">
-		<div class="row h-100">
+	<div class="container">
+
+		<!-- RELOJ QUE SOLO SE MUESTRA SI LA PANTALLA ESTÁ EN MODO 0 -->
+		<div class="row h-100" id="pantalla">
 			<div class="col-sm-12 my-auto">
-				<div class="card card-block w-40 mx-auto" id="horaReloj">
-					HH:MM:SS
-				</div>
+				<div class="card card-block w-40 mx-auto" id="horaReloj"></div>
+				<div class ="card card-block w-40 mx-auto" id="fechaReloj"></div>
 			</div>
 		</div>
-	  </div>
+	</div>
 
 	<!-- NUESTROS SCRIPTS -->
 	<script>
 		mostrarHora();
+		mostrarFecha();
 	</script>
 	<!-- JAVASCRIPT BOOSTRAP -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
