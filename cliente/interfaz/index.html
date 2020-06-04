@@ -17,13 +17,32 @@
 	<button onclick="apagarLuzRefrigerador();">Apagar luz refrigerador</button>
 	-->
 	<div class="container">
-
 		<!-- RELOJ QUE SOLO SE MUESTRA SI LA PANTALLA ESTÁ EN MODO 0 -->
 		<div class="row h-100" id="pantalla">
-			<div class="col-sm-12 my-auto">
+			<div class="col-sm-12 my-auto divReloj">
 				<div class="card card-block w-40 mx-auto" id="horaReloj"></div>
+			</div>
+		</div>
+		<!-- ICONOS PARA BLOQUEAR PANTALLA Y PARA IR AL MENÚ + FECHA -->
+		<div class="row h-100 divReloj">
+			<div class="col-sm my-auto">
+				<svg class="bi bi-power" width="10em" height="10em" viewBox="0 0 16 16" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z"/>
+					<path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z"/>
+				</svg>
+			</div>
+
+			<div class="col-8">
 				<div class ="card card-block w-40 mx-auto" id="fechaReloj"></div>
 			</div>
+
+			<div class="col-sm my-auto">
+				<svg class="bi bi-house-fill" width="10em" height="10em" viewBox="0 0 16 16" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+					<path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+				</svg>
+			</div>
+
 		</div>
 	</div>
 
