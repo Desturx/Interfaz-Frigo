@@ -10,10 +10,14 @@ body {
 #pantalla {
     /* background-color: #cecece; */
     background-color: black;
-    height: 40em;
+    /* height: 60em; */
     margin-top: 100px;
 }
 
+#tamPantalla
+{
+    height: 20em;
+}
 #horaReloj {
     color: white;
     /* background-color: #cecece; */
@@ -36,4 +40,12 @@ body {
 
 .divReloj {
     background-color: black;
+}
+
+.botonesInicio {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+.botonesInicio:focus {
+    outline-color: rgb(184, 184, 184);
 }

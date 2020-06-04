@@ -31,16 +31,34 @@ frigo.on("refrigeradorPuerta", function (abierta) {
 
 //Comprobando el estado de la pantalla
 frigo.on("frigorificoPantalla", function(estado){
-    console.log("Estado de la pantalla: ", estado);
+    /*console.log("Estado de la pantalla: ", estado);*/
     /* Si el estado es 1 el reloj desaparece y se cambia a la pantalla de inicio*/
-    if(estado == 1) { 
-        document.getElementById("pantallaReloj").style.display = "none";
+    if(estado == 0) 
+    { 
+        document.getElementById("horaReloj").style.visibility = "hidden";
+        document.getElementById("fechaReloj").style.visibility = "hidden";
     }
-
-
+    else if(estado == 1)
+    { 
+        document.getElementById("fechaReloj").style.visibility = "visible";
+        document.getElementById("horaReloj").style.visibility = "visible";
+    }
 });
 
+function cambiarEstadoPantalla()
+{
+    if(frigo.frigorificoPantalla == 0)
+    {
+        frigo.frigorificoPantalla = 1;
+        console.log("Estado de la pantalla: ", frigo.frigorificoPantalla);
+    }
+    else if(frigo.frigorificoPantalla == 1) 
+    {
+        frigo.frigorificoPantalla = 0;
+        console.log("Estado de la pantalla: ", frigo.frigorificoPantalla);
+    }
 
+}
 function mostrarFecha()
 {
     var dt = new Date();
@@ -58,7 +76,7 @@ function mostrarHora()
     if(h < 10) { h = "0" + h; }
     if(m < 10) { m = "0" + m; }
     if(s < 10) { s = "0" + s; }
-    
+
     var hora = h + ":" + m + ":" + s;
     document.getElementById("horaReloj").innerHTML = hora; // este no funciona en firefox, por eso se usab también la de abajo
     document.getElementById("horaReloj").textContent = hora;
