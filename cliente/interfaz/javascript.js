@@ -28,3 +28,27 @@ frigo.on("refrigeradorPuerta", function (abierta) {
 });
 
 
+function mostrarHora() {
+    var tiempo = new Date();
+    var h = tiempo.getHours();
+    var m = tiempo.getMinutes();
+    var s = tiempo.getSeconds();
+
+    if(h == 0) {
+        h = 24
+    }
+
+    if(h > 24) {
+        h = h - 24;
+    }
+
+    if(h < 10) { h = "0" + h; }
+
+    if(m < 10) { m = "0" + m; }
+
+    if(s < 10) { s = "0" + s; }
+    var hora = h + ":" + m + ":" + s;
+    document.getElementById("horaReloj").innerHTML = hora; // este no funciona en firefox, por eso se usab también la de abajo
+    document.getElementById("horaReloj").textContent = hora;
+    setTimeout(mostrarHora, 1000);
+}

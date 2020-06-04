@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Reloj';
+    src: url('fuentes/digital-7.ttf') format('truetype');
+}  
+
 body {
     background-color: #fafafa;
 }
@@ -13,4 +18,6 @@ body {
     text-align: center;
     font-size: 10em;
     border: none;
+    font-family: 'Reloj';
+    
 }
