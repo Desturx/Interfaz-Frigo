@@ -1,4 +1,16 @@
-html,
 body {
-  height: 100%
+    background-color: #fafafa;
+}
+
+#pantallaReloj {
+    background-color: #cecece;
+    height: 40em;
+    margin-top: 100px;
+}
+
+#horaReloj {
+    background-color: #cecece;
+    text-align: center;
+    font-size: 10em;
+    border: none;
 }
