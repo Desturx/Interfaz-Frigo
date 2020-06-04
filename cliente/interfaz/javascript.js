@@ -26,3 +26,5 @@ frigo.on("refrigeradorPuerta", function (abierta) {
     console.log("Puerta:", abierta);
     frigo.refrigeradorLuz = abierta;
 });
+
+
