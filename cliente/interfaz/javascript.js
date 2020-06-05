@@ -1,4 +1,3 @@
-
 var frigo = new Electro(); // variable para gestionar las cosas del frigo
 
 // Función para cuando se conecta la interfaz con el frigo
@@ -29,41 +28,55 @@ frigo.on("refrigeradorPuerta", function (abierta) {
     frigo.refrigeradorLuz = abierta;
 });
 
-//Comprobando el estado de la pantalla
-frigo.on("frigorificoPantalla", function(estado){
-    /*console.log("Estado de la pantalla: ", estado);*/
-    /* Si el estado es 1 el reloj desaparece y se cambia a la pantalla de inicio*/
-    if(estado == 0) 
-    { 
+function atenuar()
+{
+    if(frigo.frigorificoPantalla == 2)
+    {
+        frigo.frigorificoPantalla = 1;
+    }
+    else if(frigo.frigorificoPantalla == 1)
+    {
+        frigo.frigorificoPantalla = 2;
+    }
+}
+function irMenuInicio() 
+{
+    window.location.href='menu.html';
+    // Solo cambia el estado a encendida en caso de que no esté atenuada
+    if(frigo.frigorificoPantalla != 1)
+    {
+        frigo.frigorificoPantalla = 2; // pone la pantalla en encendido
+    }
+}
+// Cuando se vuelve al reloj
+function volverAlReloj() 
+{
+    window.location.href='index.html'; // redirige
+    frigo.frigorificoPantalla = 0; // apaga la pantalla
+}
+// Función para mostrar o ocultar el reloj
+var mostrarReloj = true;
+function cambiarEstadoPantalla()
+{
+    if(mostrarReloj)
+    {
+        mostrarReloj = false;
         document.getElementById("horaReloj").style.visibility = "hidden";
         document.getElementById("fechaReloj").style.visibility = "hidden";
     }
-    else if(estado == 1)
-    { 
-        document.getElementById("fechaReloj").style.visibility = "visible";
+    else if(!mostrarReloj) {
+        mostrarReloj = true;
         document.getElementById("horaReloj").style.visibility = "visible";
+        document.getElementById("fechaReloj").style.visibility = "visible";
     }
-});
-
-function cambiarEstadoPantalla()
-{
-    if(frigo.frigorificoPantalla == 0)
-    {
-        frigo.frigorificoPantalla = 1;
-        console.log("Estado de la pantalla: ", frigo.frigorificoPantalla);
-    }
-    else if(frigo.frigorificoPantalla == 1) 
-    {
-        frigo.frigorificoPantalla = 0;
-        console.log("Estado de la pantalla: ", frigo.frigorificoPantalla);
-    }
-
 }
+// Función para mostrar la fecha
 function mostrarFecha()
 {
     var dt = new Date();
     document.getElementById("fechaReloj").innerHTML = dt.toLocaleDateString();
 }
+// Función para mostrar la hora
 function mostrarHora() 
 {
     var tiempo = new Date();

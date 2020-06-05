@@ -7,23 +7,18 @@ body {
     background-color: #fafafa;
 }
 
-#pantalla {
-    background-color: black;
-}
+
 
 #tamPantalla
-{    
+{
     position: relative;
     top: 5em;
-    height: 20em;
-    background-color: black;
+    background-color: #83a7e9;
 }
+
 #horaReloj {
-    color: white;
-    /* background-color: #cecece; */
-    background-color: black;
     text-align: center;
-    font-size: 10em;
+    font-size: 2em;
     border: none;
     font-family: 'Reloj';
 }
@@ -37,17 +32,4 @@ body {
     border: none;
     font-family: 'Reloj';
 }
-
-.divReloj {
-    background-color: black;
-}
-
-.botonesInicio {
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-}
-.botonesInicio:focus {
-    outline-color: rgb(184, 184, 184);
-}
-
 
