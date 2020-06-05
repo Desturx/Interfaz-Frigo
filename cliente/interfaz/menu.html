@@ -6,8 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Interfaz de Frigorífico</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	<link rel="stylesheet" href="styleMenu.css">
-	<script src="../electro.js"></script>
+    <link rel="stylesheet" href="styleMenu.css">
+    <script src="https://kit.fontawesome.com/2c9d2bfda7.js" crossorigin="anonymous"></script>	<script src="../electro.js"></script>
 	<script src="javascript.js"></script>
 </head>
 
@@ -24,29 +24,51 @@
             </div>
             <!-- Hora -->
             <div class="col-sm" id="horaReloj"></div>
-            <!-- Idioma -->
-            <div class="col-sm">idioma</div>
+            <!-- ayuda -->
+            <div class="col-sm botonesDerecha">
+                <div>
+                    <button class="iconoBotones">
+                        <i class="fas fa-question-circle" id="ayuda"></i>
+                    </button>
+                    <!-- idioma -->
+                    <button class="iconoBotones">
+                        <i class="fas fa-globe" id="idioma"></i>
+                    </button>    
+                </div>
+            </div>
         </div>
-        <!-- Aqui la imagen de la nevera para seleccionar donde quieres ir-->
-        <div class="row">
-            botón parte superior frigorifico (nevera)
+        <!-- Aqui la parte de arriba de la nevera-->
+        <div class="row h-100">
+            <div class="col-sm-12 my-auto">
+                <button class="card card-block w-40 mx-auto" id="refrigerador">nevera</button>
+            </div>
         </div>
+        <!-- aqui la imagen de la parte de abajo de la nevera-->
+        <div class="row h-100">
+            <div class="col-sm-12 my-auto">
+                <button class="card card-block w-40 mx-auto" id="congelador">frigorifico</button>
+            </div>
+        </div>
+
         <!-- los iconos del fondo: botón de apagar y lo que se ocurra -->
         <div class="row">
-            boton parte inferior frigorifico (congelador)
-        </div>
-        <div class="row">
-            botones de la parte inferior
-            <svg class="bi bi-gear-fill" width="2.5em" height="2.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"/>
-            </svg>
+            <!-- Botón de opciones -->
+            <div class="col-sm">
+                <button class="iconoBotones">
+                    <svg class="bi bi-gear-fill" width="2.5em" height="2.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"/>
+                    </svg>    
+                </button>
+            </div>
+            <div class="col-sm">
+                
+            </div>
         </div>
 	</div>
 
 	<!-- NUESTROS SCRIPTS -->
 	<script>
 		mostrarHora();
-		mostrarFecha();
 	</script>
 	<!-- JAVASCRIPT BOOSTRAP -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
