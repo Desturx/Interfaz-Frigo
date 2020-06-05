@@ -28,24 +28,33 @@
             <div class="col-4 botonesDerecha">
                 <div>
                     <button class="iconoBotones">
-                        <i class="fas fa-question-circle iconos"></i>
+                        <i class="fas fa-question-circle iconos" ></i>
                     </button>
                     <!-- idioma -->
                     <button class="iconoBotones">
-                        <i class="fas fa-globe iconos"></i>
+                        <i class="fas fa-globe iconos" ></i>
                     </button>    
                 </div>
             </div>
         </div>
         <!-- Aqui la parte de arriba de la nevera-->
         <div class="row h-100">
-            <div class="col-4 my-auto">
-                <button class="card card-block w-40 mx-auto" id="refrigerador">nevera</button>
-                <button class="card card-block w-40 mx-auto" id="congelador">frigorifico</button>
+            <div class="col-12 my-auto">
+                <div class="card card-block w-40 mx-auto" id="refrigerador"> 
+                    <h2>Refrigerador</h2>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                      </div>
+                </div>
+                <div class="card card-block w-40 mx-auto" id="congelador"> 
+                    <h2>Congelador</h2>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                      </div>
+                </div>
+                
             </div>
-            <div class="col-8 my-auto">
-                <div class="card card-block w-40 mx-auto" id="settings"></div>
-            </div>
+            
         </div>
 
         <!-- los iconos del fondo: botón de apagar y lo que se ocurra -->
@@ -53,7 +62,9 @@
             <!-- Botón de opciones -->
             <div class="col-sm">
                 <button class="iconoBotones">
-                    <i class="fas fa-cog iconos"></i> 
+                    <svg class="bi bi-gear-fill" width="2.5em" height="2.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"/>
+                    </svg>    
                 </button>
             </div>
             <div class="col-sm">

@@ -58,8 +58,8 @@ body {
 }
 
 #refrigerador {
-    height: 400px;
-    width: 200px;
+    height: 300px;
+    width: 95%;
     margin-top: 20px;
     background-color: rgba(136, 251, 255, 0.781);
     border: none;
@@ -71,8 +71,8 @@ body {
 }
 
 #congelador {
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 95%;
     margin-top: 13px;
     margin-bottom: 14px;
     background-color: rgba(136, 251, 255, 0.781);
@@ -92,16 +92,15 @@ body {
 
 @media(max-width: 767px) {
     #refrigerador {
-        height: 200px;
-        width: 100px;
+        
+        
         margin-top: 20px;
         background-color: rgba(136, 251, 255, 0.781);
         border: none;
     }
 
     #congelador {
-        height: 100px;
-        width: 100px;
+        
         margin-top: 13px;
         margin-bottom: 14px;
         background-color: rgba(136, 251, 255, 0.781);
