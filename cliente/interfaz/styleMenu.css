@@ -86,6 +86,7 @@ body {
 #settings {
     margin-top: 13px ;
     height: 615px;
+    margin-bottom: 14px;
 }
 
 
@@ -108,7 +109,6 @@ body {
     }
 
     #settings {
-        margin-top: 13px ;
         height: 400px;
     }
 
