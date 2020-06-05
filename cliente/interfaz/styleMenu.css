@@ -36,15 +36,10 @@ body {
     font-family: 'Reloj';
 }
 
-#idioma {
+.iconos {
     font-size:2.5em;
-    vertical-align: auto;
 }
 
-#ayuda {
-    font-size:2.5em;
-    vertical-align: auto;
-}
 
 .iconoBotones {
     background-color: rgba(0, 0, 0, 0);
@@ -110,5 +105,14 @@ body {
         margin-bottom: 14px;
         background-color: rgba(136, 251, 255, 0.781);
         border: none;
+    }
+
+    #settings {
+        margin-top: 13px ;
+        height: 400px;
+    }
+
+    .iconoBotones {
+        font-size:10px;
     }
 }
