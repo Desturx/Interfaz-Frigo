@@ -144,9 +144,7 @@ h2 {
 
 /*Botones de menu: Eco, Luz, Turbo*/
 .recBotones{                        
-    border: 2px solid #B2BEFA;
-    align-content: center;
-    
+   
 }
 
 /* Info Temperatura*/
@@ -156,7 +154,7 @@ h2 {
 .slider {
     -webkit-appearance: none;
     width: 80%;
-    margin-left: 10%;
+    
     height: 15px;
     border-radius: 5px;  
     background: #ffffff;
