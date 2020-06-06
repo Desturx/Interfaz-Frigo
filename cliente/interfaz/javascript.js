@@ -1,4 +1,6 @@
 var frigo = new Electro(); // variable para gestionar las cosas del frigo
+//Funcion Slidebar
+
 
 // Función para cuando se conecta la interfaz con el frigo
 frigo.on("connect", function () {
@@ -101,13 +103,18 @@ function mostrarHora()
     setTimeout(mostrarHora, 1000);
     
 }
-
-//Funcion Slidebar
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-output.innerHTML = slider.value; // Display the default slider value
-
-
-slider.oninput = function() {
-  output.innerHTML = this.value;
+/*var slider1 = document.getElementById("myRange");
+var demo = document.getElementById("demo");
+console.log("AA",slider1.value);
+if(slider1 != null){
+    demo.innerHTML = slider1.value;
 }
+
+
+slider1.oninput = function() {
+
+    if(this != null){
+        demo.innerHTML = this.value;
+    }
+  
+}*/

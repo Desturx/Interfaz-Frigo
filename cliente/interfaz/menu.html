@@ -3,10 +3,12 @@
 
 <head>
 	<meta charset="utf8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 	<title>Interfaz de Frigorífico</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="styleMenu.css">
+
     <script src="https://kit.fontawesome.com/2c9d2bfda7.js" crossorigin="anonymous"></script>	<script src="../electro.js"></script>
     <!-- JAVASCRIPT BOOSTRAP -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -52,18 +54,65 @@
                         <h2 data-toggle="popover" data-placement="auto" data-content="Cambia las opciones del refrigerador aqui" data-trigger="manual">Refrigerador</h2> <!-- POPOVER AQUI -->
                     </div>
                     <div class="slidecontainer">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <h2 class="Temperatura" ><span id="demo"></span> ºC</h2>
+                        <input type="range" min="-20" max="20" value="5" class="slider" id="myRange">
                       </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <button class="iconoBotonesIn recBotones" id="EcoCon">
+                                <i class="fas fa-leaf iconos"></i>
+                            </button>
+                            
+                        </div>
+                        <div class="col-4" >
+                            
+                            <button class="iconoBotonesIn recBotones" id="LuzCon">
+                                <i class="fas fa-lightbulb iconos"></i>
+                            </button>
+                            
+                        </div>
+                        <div class="col-4">
+                            <button class="iconoBotonesIn recBotones" id="TurboCon">
+                                <i class="fas fa-tachometer-alt iconos"></i>
+                            </button>
+                           
+                        </div>
+
+                    </div>
+                    
                 </div>
                 <!-- Opciones de la parte de abajo-->
-                <div class="card card-block w-40 mx-auto" id="congelador"> 
+                <div class="card card-block w-40 mx-auto" id="congelador">                                          <!-- Congelador -->
                     <div class ="d-flex justify-content-start" style="padding: 10px;">
                         <i class="fas fa-igloo iconos"></i>
                         <h2 data-toggle="popover" data-placement="auto" data-content="Cambia las opciones del congelador aqui" data-trigger="manual">Congelador</h2> <!-- POPOVER AQUI -->
                     </div>
                     <div class="slidecontainer">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <h2 class="Temperatura" ><span id="demo2"></span> ºC</h2>
+                        <input type="range" min="-20" max="20" value="5" class="slider" id="myRange2">
                       </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <button class="iconoBotonesIn recBotones" id="EcoCon">
+                                <i class="fas fa-leaf iconos"></i>
+                            </button>
+                            
+                        </div>
+                        <div class="col-4" >
+                            
+                            <button class="iconoBotonesIn recBotones" id="LuzCon">
+                                <i class="fas fa-lightbulb iconos"></i>
+                            </button>
+                            
+                        </div>
+                        <div class="col-4">
+                            <button class="iconoBotonesIn recBotones" id="TurboCon">
+                                <i class="fas fa-tachometer-alt iconos"></i>
+                            </button>
+                           
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,7 +160,26 @@
             $('[data-toggle="popover"]').popover();
         });
         */
-	</script>
+    </script>
+    <script>
+        var slider1 = document.getElementById("myRange");           /* SLIDER RANGE BAR */ 
+        var demo = document.getElementById("demo");
+        demo.innerHTML = slider1.value;
+        
+        slider1.oninput = function() {
+          demo.innerHTML = this.value;
+          
+        }
+    </script>
+    <script>
+        var slider2 = document.getElementById("myRange2");
+        var output = document.getElementById("demo2");
+        output.innerHTML = slider2.value;
+        
+        slider2.oninput = function() {
+            output.innerHTML = this.value;
+        }
+    </script>   
 </body>
 
 </html>

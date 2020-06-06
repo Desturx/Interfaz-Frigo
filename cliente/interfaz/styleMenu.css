@@ -28,6 +28,7 @@ body {
 
 h2 {
     margin-left: 15px;
+    color: black;
 }
 
 #fechaReloj {
@@ -45,6 +46,8 @@ h2 {
 }
 
 
+
+
 .iconoBotones {
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -52,6 +55,18 @@ h2 {
 }
 
 .iconoBotones:focus {
+    outline: 2.5px;
+    outline-style: dashed;
+    outline-color: rgba(38, 71, 218, 0.493);
+}
+
+.iconoBotonesIn {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: black;
+}
+
+.iconoBotonesIn:focus {
     outline: 2.5px;
     outline-style: dashed;
     outline-color: rgba(38, 71, 218, 0.493);
@@ -67,7 +82,8 @@ h2 {
     margin-top: 20px;
     background-color: rgba(136, 251, 255, 0.781);
     border: none;
-    border-radius: 10px;
+    border-radius: 10px;  
+    text-align: center; 
 }
 
 #refrigerador:focus {
@@ -83,7 +99,11 @@ h2 {
     background-color: rgba(136, 251, 255, 0.781);
     border: none;
     border-radius: 10px;
+    text-align: center; 
 }
+
+
+
 #congelador:focus {
     outline: 0;
     background-color: rgba(38, 71, 218, 0.493);
@@ -121,3 +141,48 @@ h2 {
         font-size:10px;
     }
 }
+
+/*Botones de menu: Eco, Luz, Turbo*/
+.recBotones{                        
+    border: 2px solid #B2BEFA;
+    align-content: center;
+    
+}
+
+/* Info Temperatura*/
+
+
+/*Slidebar*/ 
+.slider {
+    -webkit-appearance: none;
+    width: 80%;
+    margin-left: 10%;
+    height: 15px;
+    border-radius: 5px;  
+    background: #ffffff;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    align-items: center;
+    border: 1px solid #B2BEFA;
+    margin-bottom: 5em;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: rgb(67, 94, 247);
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: rgb(78, 159, 235);
+    cursor: pointer;
+  }
