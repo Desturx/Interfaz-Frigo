@@ -106,7 +106,10 @@ function mostrarHora()
     document.getElementById("horaReloj").innerHTML = hora; // este no funciona en firefox, por eso se usab también la de abajo
     document.getElementById("horaReloj").textContent = hora;
     setTimeout(mostrarHora, 1000);
+ 
     
+    ControlTempF();
+    ControlTempC();
 }
 
 
@@ -203,7 +206,10 @@ function EcoCon(){
             frigo.refrigeradorMotor=0;
         }
         else{
-            frigo.refrigeradorMotor=1;
+            if(frigo.congelador<2){
+                frigo.refrigeradorMotor=1;
+            }
+            
         }
     }
 
@@ -212,7 +218,10 @@ function EcoCon(){
             frigo.congeladorMotor=0;
         }
         else{
-            frigo.congeladorMotor=1;
+            if(frigo.congeladorMotor<2){
+                frigo.congeladorMotor=1;
+            }
+            
         }
     }
     
