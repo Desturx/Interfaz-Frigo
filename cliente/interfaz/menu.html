@@ -141,7 +141,8 @@
 	</div>
 	<!-- NUESTROS SCRIPTS -->
 	<script>
-
+        ControlTempF();
+        ControlTempC();
         mostrarHora();
         // mostrar los popover cuando pulso el botón de ayuda
         $('#ayuda').on('click', function() {
@@ -169,7 +170,9 @@
         slider1.oninput = function() {
           demo.innerHTML = this.value;
           
+          TemperaturaF(demo.innerHTML);
         }
+        
     </script>
     <script>
         var slider2 = document.getElementById("myRange2");
@@ -178,6 +181,7 @@
         
         slider2.oninput = function() {
             output.innerHTML = this.value;
+            TemperaturaC(output.innerHTML);
         }
     </script>   
 </body>

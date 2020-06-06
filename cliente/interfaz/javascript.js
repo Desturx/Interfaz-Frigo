@@ -1,6 +1,9 @@
 var frigo = new Electro(); // variable para gestionar las cosas del frigo
-//Funcion Slidebar
 
+var TempF = 0;
+var TempC = 0;
+
+var ajustesPresencia= false;
 
 // Función para cuando se conecta la interfaz con el frigo
 frigo.on("connect", function () {
@@ -13,6 +16,7 @@ frigo.on("connect", function () {
 function encenderLuzRefrigerador() 
 {
     frigo.refrigeradorLuz = true;
+   
     console.log("luz encendida");
 }
 
@@ -28,6 +32,7 @@ function apagarLuzRefrigerador()
 frigo.on("refrigeradorPuerta", function (abierta) {
     console.log("Puerta:", abierta);
     frigo.refrigeradorLuz = abierta;
+    
 });
 
 function atenuar()
@@ -109,32 +114,26 @@ function mostrarHora()
 /*    Botones ONCLICK de ECO, LUZ y TURBO     */
 /* Refrigerador  */
 function EcoF(){
-  /* if( frigo.refrigeradorLuz == false ){
-    frigo.refrigeradorLuz=true;
-       console.log("Eco: ", frigo.refrigeradorLuz);
-   }
-   else{
-    frigo.refrigeradorLuz=false;
-    console.log("Eco: ", frigo.refrigeradorLuz);
-   }*/
+  
 }
 
 
 function LuzF(){
     if( frigo.refrigeradorLuz == false ){
      frigo.refrigeradorLuz=true;
-        console.log("Eco: ", frigo.refrigeradorLuz);
+        console.log("Luz refrigerador: ", frigo.refrigeradorLuz);
     }
     else{
      frigo.refrigeradorLuz=false;
-     console.log("Eco: ", frigo.refrigeradorLuz);
+     console.log("Luz refrigerador: ", frigo.refrigeradorLuz);
     }
  }
 
  function TurboF(){
-    if( frigo.refrigeradorMotor < 2 ){
+         /*  Modo Turbo del refrigerador, si lo desactiva y la temperatura de dentro es menor que la ext-num lo apaga    */
+    if( frigo.refrigeradorMotor < 2  ){
      frigo.refrigeradorMotor=2;
-        console.log("Eco: ", frigo.refrigeradorMotor);
+        console.log("Motor refrigerador: ", frigo.refrigeradorMotor);
     }
     else{
         if(frigo.refrigeradorTemperatura<frigo.exteriorTemperatura-10){
@@ -143,43 +142,77 @@ function LuzF(){
         else{
             frigo.refrigeradorMotor=1;
         }
-     console.log("Eco: ", frigo.refrigeradorMotor);
+     console.log("Motor refrigerador: ", frigo.refrigeradorMotor);
     }
  }
 
 
  /* Congelador  */
 function EcoCon(){
-    /* if( frigo.refrigeradorLuz == false ){
-      frigo.refrigeradorLuz=true;
-         console.log("Eco: ", frigo.refrigeradorLuz);
-     }
-     else{
-      frigo.refrigeradorLuz=false;
-      console.log("Eco: ", frigo.refrigeradorLuz);
-     }*/
+    
   }
   
   
   function LuzCon(){
       if(  frigo.congeladorLuz == false ){
        frigo.congeladorLuz=true;
-          console.log("Eco: ", frigo.congeladorLuz);
+          console.log("Luz congelador: ", frigo.congeladorLuz);
       }
       else{
        frigo.congeladorLuz=false;
-       console.log("Eco: ", frigo.congeladorLuz);
+       console.log("Luz congelador: ", frigo.congeladorLuz);
       }
    }
   
    function TurboCon(){
-     /* if( frigo.refrigeradorLuz == false ){
-       frigo.refrigeradorLuz=true;
-          console.log("Eco: ", frigo.refrigeradorLuz);
-      }
-      else{
-       frigo.refrigeradorLuz=false;
-       console.log("Eco: ", frigo.refrigeradorLuz);
-      }*/
+    /*  Modo Turbo del congelador, si lo desactiva y la temperatura de dentro es menor que la ext-num lo apaga    */
+    if( frigo.congeladorMotor < 2 ){
+        frigo.congeladorMotor=2;
+           console.log("Motor congelador: ", frigo.congeladorMotor);
+       }
+       else{
+           if(frigo.congeladorTemperatura<frigo.exteriorTemperatura-20){
+               frigo.congeladorMotor=0; 
+           }
+           else{
+               frigo.congeladorMotor=1;
+           }
+        console.log("Motor congelador: ", frigo.congeladorMotor);
+       }
    }
  
+
+   function TemperaturaF(valor){
+       TempF = valor;
+       if(frigo.refrigeradorTemperatura>valor){
+            frigo.refrigeradorMotor=1;
+       }
+       
+   };
+
+   function TemperaturaC(valor){
+        TempC = valor;
+        if(frigo.congeladorTemperatura>valor){
+                frigo.refrigeradorMotor=1;
+        }
+    
+    };
+
+    function ControlTempF(){
+        if(frigo.refrigeradorTemperatura<TempF-10){
+            frigo.refrigeradorMotor=0;
+        }
+        else{
+            frigo.refrigeradorMotor=1;
+        }
+    }
+
+    function ControlTempC(){
+        if(frigo.congeladorTemperatura<TempC-10){
+            frigo.refrigeradorMotor=0;
+        }
+        else{
+            frigo.refrigeradorMotor=1;
+        }
+    }
+    
