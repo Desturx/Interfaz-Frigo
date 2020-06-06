@@ -5,6 +5,7 @@ var TempC = 0;
 
 var ajustesPresencia= false;
 
+//#region FUNCIONES FRIGO
 // Función para cuando se conecta la interfaz con el frigo
 frigo.on("connect", function () {
     console.log("Ya estoy conectado con el frigorifico!!!")
@@ -27,13 +28,16 @@ function apagarLuzRefrigerador()
     console.log("luz apagada");
 }
 
-
 // Activar la luz del refrigerador cuando se abre la puerta
 frigo.on("refrigeradorPuerta", function (abierta) {
     console.log("Puerta:", abierta);
     frigo.refrigeradorLuz = abierta;
     
 });
+//#endregion
+
+
+
 
 function atenuar()
 {
@@ -51,6 +55,7 @@ function atenuar()
         document.getElementById("atenuarPantalla").innerHTML = '<i class="fas fa-moon iconos"></i>';
     }
 }
+
 function irMenuInicio() 
 {
     window.location.href='menu.html';
