@@ -30,13 +30,18 @@ frigo.on("refrigeradorPuerta", function (abierta) {
 
 function atenuar()
 {
-    if(frigo.frigorificoPantalla == 2)
+    var body = document.getElementsByTagName("body")[0];
+    if(frigo.frigorificoPantalla == 2) // si la pantalla está encendida, se atenua
     {
         frigo.frigorificoPantalla = 1;
+        body.style.filter = "brightness(60%)";
+        document.getElementById("atenuarPantalla").innerHTML = '<i class="fas fa-sun iconos"></i>';
     }
-    else if(frigo.frigorificoPantalla == 1)
+    else if(frigo.frigorificoPantalla == 1) // si la pantalla está atenuada se enciende
     {
         frigo.frigorificoPantalla = 2;
+        body.style.filter = "brightness(100%)";
+        document.getElementById("atenuarPantalla").innerHTML = '<i class="fas fa-moon iconos"></i>';
     }
 }
 function irMenuInicio() 
