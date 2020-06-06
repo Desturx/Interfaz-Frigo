@@ -207,11 +207,11 @@ function EcoCon(){
     };
 
     function ControlTempF(){
-        if(frigo.refrigeradorTemperatura<TempF-10){
+        if(frigo.refrigeradorTemperatura<TempF){
             frigo.refrigeradorMotor=0;
         }
         else{
-            if(frigo.congelador<2){
+            if(frigo.refrigeradorMotor<2){
                 frigo.refrigeradorMotor=1;
             }
             
@@ -219,7 +219,7 @@ function EcoCon(){
     }
 
     function ControlTempC(){
-        if(frigo.congeladorTemperatura<TempC-10){
+        if(frigo.congeladorTemperatura<TempC-5){
             frigo.congeladorMotor=0;
         }
         else{
