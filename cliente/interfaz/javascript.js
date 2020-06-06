@@ -2,7 +2,8 @@ var frigo = new Electro(); // variable para gestionar las cosas del frigo
 
 var TempF = 0;
 var TempC = 0;
-
+var modoEcoF=false;
+var modoEcoC=false;
 var ajustesPresencia= false;
 
 //#region FUNCIONES FRIGO
@@ -122,7 +123,13 @@ function mostrarHora()
 /*    Botones ONCLICK de ECO, LUZ y TURBO     */
 /* Refrigerador  */
 function EcoF(){
-  
+  if( modoEcoF == false){
+      modoEcoF= true;
+  }
+  else{
+      modoEcoF = false;
+  }
+  console.log("Eco F ",modoEcoF);
 }
 
 
@@ -144,7 +151,7 @@ function LuzF(){
         console.log("Motor refrigerador: ", frigo.refrigeradorMotor);
     }
     else{
-        if(frigo.refrigeradorTemperatura<frigo.exteriorTemperatura-10){
+        if(frigo.refrigeradorTemperatura<frigo.exteriorTemperatura){
             frigo.refrigeradorMotor=0; 
         }
         else{
@@ -157,7 +164,13 @@ function LuzF(){
 
  /* Congelador  */
 function EcoCon(){
-    
+    if( modoEcoC == false){
+        modoEcoC= true;
+    }
+    else{
+        modoEcoC = false;
+    }
+    console.log("Eco C ",modoEcoC);
   }
   
   
@@ -189,7 +202,7 @@ function EcoCon(){
        }
    }
  
-
+   /* Set Temperatura */
    function TemperaturaF(valor){
        TempF = valor;
        if(frigo.refrigeradorTemperatura>valor){
@@ -206,27 +219,59 @@ function EcoCon(){
     
     };
 
+
+    /* Funcionamiento motor frigo/congelador. Teniendo en cuenta el modo ECO */
     function ControlTempF(){
-        if(frigo.refrigeradorTemperatura<TempF){
-            frigo.refrigeradorMotor=0;
-        }
-        else{
-            if(frigo.refrigeradorMotor<2){
-                frigo.refrigeradorMotor=1;
+        if(modoEcoF==false){
+            if(frigo.refrigeradorTemperatura<TempF){
+                frigo.refrigeradorMotor=0;
             }
-            
+            else{
+                if(frigo.refrigeradorMotor<2){
+                    frigo.refrigeradorMotor=1;
+                }
+                
+            }
         }
+        else {
+            if(frigo.refrigeradorTemperatura>TempF+1){
+                if(frigo.refrigeradorMotor!=2){
+                    frigo.refrigeradorMotor=1;
+                }
+                
+            }
+            if(frigo.refrigeradorTemperatura<TempF-1){
+                frigo.refrigeradorMotor=0;
+            }
+
+        }
+        
+       
     }
 
     function ControlTempC(){
-        if(frigo.congeladorTemperatura<TempC-5){
-            frigo.congeladorMotor=0;
+        if(modoEcoC==false){
+            if(frigo.congeladorTemperatura<TempC){
+                frigo.congeladorMotor=0;
+            }
+            else{
+                if(frigo.congeladorMotor<2){
+                    frigo.congeladorMotor=1;
+                }
+                
+            }
         }
         else{
-            if(frigo.congeladorMotor<2){
-                frigo.congeladorMotor=1;
+            if(frigo.congeladorTemperatura<TempC-5){
+                frigo.congeladorMotor=0;
             }
-            
+            else if(frigo.congeladorTemperatura>TempC+5){
+                if(frigo.congeladorMotor<2){
+                    frigo.congeladorMotor=1;
+                }
+                
+            }
         }
+  
     }
     
