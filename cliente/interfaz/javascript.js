@@ -103,18 +103,83 @@ function mostrarHora()
     setTimeout(mostrarHora, 1000);
     
 }
-/*var slider1 = document.getElementById("myRange");
-var demo = document.getElementById("demo");
-console.log("AA",slider1.value);
-if(slider1 != null){
-    demo.innerHTML = slider1.value;
+
+
+
+/*    Botones ONCLICK de ECO, LUZ y TURBO     */
+/* Refrigerador  */
+function EcoF(){
+  /* if( frigo.refrigeradorLuz == false ){
+    frigo.refrigeradorLuz=true;
+       console.log("Eco: ", frigo.refrigeradorLuz);
+   }
+   else{
+    frigo.refrigeradorLuz=false;
+    console.log("Eco: ", frigo.refrigeradorLuz);
+   }*/
 }
 
 
-slider1.oninput = function() {
-
-    if(this != null){
-        demo.innerHTML = this.value;
+function LuzF(){
+    if( frigo.refrigeradorLuz == false ){
+     frigo.refrigeradorLuz=true;
+        console.log("Eco: ", frigo.refrigeradorLuz);
     }
+    else{
+     frigo.refrigeradorLuz=false;
+     console.log("Eco: ", frigo.refrigeradorLuz);
+    }
+ }
+
+ function TurboF(){
+    if( frigo.refrigeradorMotor < 2 ){
+     frigo.refrigeradorMotor=2;
+        console.log("Eco: ", frigo.refrigeradorMotor);
+    }
+    else{
+        if(frigo.refrigeradorTemperatura<frigo.exteriorTemperatura-10){
+            frigo.refrigeradorMotor=0; 
+        }
+        else{
+            frigo.refrigeradorMotor=1;
+        }
+     console.log("Eco: ", frigo.refrigeradorMotor);
+    }
+ }
+
+
+ /* Congelador  */
+function EcoCon(){
+    /* if( frigo.refrigeradorLuz == false ){
+      frigo.refrigeradorLuz=true;
+         console.log("Eco: ", frigo.refrigeradorLuz);
+     }
+     else{
+      frigo.refrigeradorLuz=false;
+      console.log("Eco: ", frigo.refrigeradorLuz);
+     }*/
+  }
   
-}*/
+  
+  function LuzCon(){
+      if(  frigo.congeladorLuz == false ){
+       frigo.congeladorLuz=true;
+          console.log("Eco: ", frigo.congeladorLuz);
+      }
+      else{
+       frigo.congeladorLuz=false;
+       console.log("Eco: ", frigo.congeladorLuz);
+      }
+   }
+  
+   function TurboCon(){
+     /* if( frigo.refrigeradorLuz == false ){
+       frigo.refrigeradorLuz=true;
+          console.log("Eco: ", frigo.refrigeradorLuz);
+      }
+      else{
+       frigo.refrigeradorLuz=false;
+       console.log("Eco: ", frigo.refrigeradorLuz);
+      }*/
+   }
+ 

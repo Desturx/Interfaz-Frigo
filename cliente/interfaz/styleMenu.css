@@ -143,9 +143,7 @@ h2 {
 }
 
 /*Botones de menu: Eco, Luz, Turbo*/
-.recBotones{                        
-   
-}
+
 
 /* Info Temperatura*/
 
@@ -164,6 +162,7 @@ h2 {
     transition: opacity .2s;
     align-items: center;
     border: 1px solid #B2BEFA;
+   
     margin-bottom: 5em;
   }
   
@@ -184,3 +183,7 @@ h2 {
     background: rgb(78, 159, 235);
     cursor: pointer;
   }
+
+.slidecontainer{
+    margin-top: 1em;
+}
