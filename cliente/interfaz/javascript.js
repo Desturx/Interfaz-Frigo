@@ -12,29 +12,59 @@ frigo.on("connect", function () {
     console.log("Ya estoy conectado con el frigorifico!!!")
     console.log("Con este hay " + frigo.clientes + " clientes conectados");
 
+    // PARA EL FRIGO
+    // modo eco
+
+    // la luz
+    if(frigo.refrigeradorLuz == true) {
+        document.getElementById("LuzFrigo").setAttribute("class", "iconoBotonesOn");
+    }
+    if(frigo.refrigeradorLuz == false) {
+        document.getElementById("LuzFrigo").setAttribute("class", "iconoBotonesOff");
+    }  
+    // modo turbo
+    if(frigo.refrigeradorMotor == 2) {
+        document.getElementById("TurboFrigo").setAttribute("class", "iconoBotonesOn");
+
+    }
+    else if(frigo.refrigeradorMotor < 2) {
+        document.getElementById("TurboFrigo").setAttribute("class", "iconoBotonesOff");
+    }
+    // PARA EL CONGELADOR
+    // modo eco
 });
 
-// Función para encender la luz del frigo
-function encenderLuzRefrigerador() 
-{
-    frigo.refrigeradorLuz = true;
-   
-    console.log("luz encendida");
-}
+// Cambiar la luz cuando cambia en el emulador
+frigo.on("refrigeradorLuz", function(estado){
+    if(estado == true) {
+        document.getElementById("LuzFrigo").setAttribute("class", "iconoBotonesOn");
+    }
+    else if(estado == false) {
+        document.getElementById("LuzFrigo").setAttribute("class", "iconoBotonesOff");
+    }
+});
 
-// Función para apagar la pantalla del frigo
-function apagarLuzRefrigerador() 
-{
-    frigo.refrigeradorLuz = false;
-    console.log("luz apagada");
-}
+// Cambiar el estado del motor cuando cambie en el emulador
+frigo.on("refrigeradorMotor", function(estado) {
+    if(estado == 2) {
+        document.getElementById("TurboFrigo").setAttribute("class", "iconoBotonesOn");
+    }
+    else if(estado < 2) {
+        document.getElementById("TurboFrigo").setAttribute("class", "iconoBotonesOff");
+    }
+});
 
 // Activar la luz del refrigerador cuando se abre la puerta
+/*
 frigo.on("refrigeradorPuerta", function (abierta) {
     console.log("Puerta:", abierta);
     frigo.refrigeradorLuz = abierta;
     
 });
+*/
+
+
+
 //#endregion
 
 
@@ -117,9 +147,6 @@ function mostrarHora()
     ControlTempF();
     ControlTempC();
 }
-
-
-
 /*    Botones ONCLICK de ECO, LUZ y TURBO     */
 /* Refrigerador  */
 function EcoF(){
@@ -132,10 +159,9 @@ function EcoF(){
   console.log("Eco F ",modoEcoF);
 }
 
-
 function LuzF(){
     if( frigo.refrigeradorLuz == false ){
-     frigo.refrigeradorLuz=true;
+        frigo.refrigeradorLuz=true;
         console.log("Luz refrigerador: ", frigo.refrigeradorLuz);
     }
     else{

@@ -21,7 +21,7 @@
 <body>
 	<div class="container" id="tamPantalla">
         <!-- Aqui la parte superior de la pantalla donde se encuentran diferentes iconos-->
-        <div class="row">
+        <div class="row-w95">
             <div class="col-4">
                 <button onclick ="atenuar();" class="iconoBotones" id="atenuarPantalla" data-toggle="popover" data-placement="auto" data-content="Con este botón puedes atenuar la pantalla" data-trigger="manual"> <!-- POPOVER AQUI -->
                     <i class="fas fa-moon iconos"></i>
@@ -53,24 +53,27 @@
                         <i class="far fa-snowflake iconos"></i>
                         <h2 data-toggle="popover" data-placement="auto" data-content="Cambia las opciones del refrigerador aqui" data-trigger="manual">Refrigerador</h2> <!-- POPOVER AQUI -->
                     </div>
+                    <!-- Slider frigo -->
                     <div class="slidecontainer">
                         <h2 class="Temperatura" ><span id="demo"></span> ºC</h2>
                         <input type="range" min="-20" max="20" value="0" class="slider" id="myRange">
-                      </div>
-                      <div class="row justify-content-center">
+                    </div>
+
+                    <!-- Botones frigo -->
+                    <div class="row justify-content-center">
                         <div class="col-2">
-                            <button class="iconoBotonesOff" id="EcoCon" onclick="EcoF()">
+                            <button class="iconoBotonesOff" id="EcoFrigo">
                                 <i class="fas fa-leaf iconos"></i>
                             </button>                    
                         </div>
                         <div class="col-2" >
-                            <button class="iconoBotonesOff" id="LuzCon" onclick="LuzF()">
+                            <button class="iconoBotonesOff" id="LuzFrigo">
                                 <i class="fas fa-lightbulb iconos"></i>
                             </button>
                             
                         </div>
                         <div class="col-2">
-                            <button class="iconoBotonesOff" id="TurboCon" onclick="TurboF()">
+                            <button class="iconoBotonesOff" id="TurboFrigo">
                                 <i class="fas fa-tachometer-alt iconos"></i>
                             </button>
                            
@@ -84,10 +87,12 @@
                         <i class="fas fa-igloo iconos"></i>
                         <h2 data-toggle="popover" data-placement="auto" data-content="Cambia las opciones del congelador aqui" data-trigger="manual">Congelador</h2> <!-- POPOVER AQUI -->
                     </div>
+                    <!-- Slider congelador -->
                     <div class="slidecontainer">
                         <h2 class="Temperatura" ><span id="demo2"></span> ºC</h2>
                         <input type="range" min="-20" max="20" value="0" class="slider" id="myRange2">
-                      </div>
+                    </div>
+                    <!-- Botones congelador -->
                     <div class="row justify-content-center">
                         <div class="col-2">
                             <button class="iconoBotonesOff" id="EcoCon" onclick="EcoCon()">
@@ -105,7 +110,6 @@
                             <button class="iconoBotonesOff" id="TurboCon" onclick="TurboCon()">
                                 <i class="fas fa-tachometer-alt iconos"></i>
                             </button>
-                           
                         </div>
                     </div>
                 </div>
@@ -132,14 +136,21 @@
                     <i class="fas fa-shopping-basket iconos"></i>
                 </button>   
             </div>
+            <!-- Botón de las alertas -->
+            <div class="col" style="text-align: center;">
+                <button class="iconoBotones" data-toggle="popover" data-placement="auto" data-content="Aqui puedes pedir los que haga falta para tu nevera" data-trigger="manual"> <!-- POPOVER AQUI -->
+                    <i class="fas fa-exclamation-triangle iconos"></i>
+                </button>   
+            </div>
         </div>
 	</div>
 	<!-- NUESTROS SCRIPTS -->
 	<script>
-        ControlTempF();
-        ControlTempC();
         mostrarHora();
         // mostrar los popover cuando pulso el botón de ayuda
+    </script>
+    <!-- SCRIPTS PARA LOS POPOVER -->
+    <script>
         $('#ayuda').on('click', function() {
             $('[data-toggle="popover"]').popover('toggle');
         });
@@ -150,9 +161,6 @@
                 $('[data-toggle="popover"]').popover('hide');
             }
         });
-        $('#modoEcoF').on('click',function(){
-            console.log(frigo.refrigeradorLuz);
-        });
         // Inicializar popovers en todo el documento
         /*
         $(document).ready(function(){
@@ -160,18 +168,16 @@
         });
         */
     </script>
+    <!-- SCRIPT PARA LOS SLIDERS DE LA TEMPERATURA -->
     <script>
         var slider1 = document.getElementById("myRange");           /* SLIDER RANGE BAR */ 
         var demo = document.getElementById("demo");
         demo.innerHTML = slider1.value;
         slider1.oninput = function() {
           demo.innerHTML = this.value;
-          
           TemperaturaF(demo.innerHTML);
         }
-        
-    </script>
-    <script>
+
         var slider2 = document.getElementById("myRange2");
         var output = document.getElementById("demo2");
         output.innerHTML = slider2.value;
@@ -180,7 +186,7 @@
             output.innerHTML = this.value;
             TemperaturaC(output.innerHTML);
         }
-    </script>   
+    </script>
 </body>
 
 </html>
