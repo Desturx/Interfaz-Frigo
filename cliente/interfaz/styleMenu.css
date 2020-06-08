@@ -13,7 +13,8 @@ body {
 {
     position: relative;
     top: 5em;
-    background-color: #6291e9;
+    /* background-color: #6291e9; */
+    background-color: rgba(33, 48, 116, 0.781);
     padding: 12px;
 }
 
@@ -26,7 +27,6 @@ body {
 
 h2 {
     margin-left: 15px;
-    color: black;
 }
 
 #fechaReloj {
@@ -100,15 +100,11 @@ h2 {
     height: 300px;
     width: 95%;
     margin-top: 20px;
-    background-color: rgba(136, 251, 255, 0.781);
+    /* background-color: rgba(33, 48, 116, 0.781); */
+    background-color: #6291e9;
     border: none;
     border-radius: 10px;  
     text-align: center; 
-}
-
-#refrigerador:focus {
-    outline: 0;
-    background-color: rgba(38, 71, 218, 0.493);
 }
 
 #congelador {
@@ -116,15 +112,11 @@ h2 {
     width: 95%;
     margin-top: 13px;
     margin-bottom: 14px;
-    background-color: rgba(136, 251, 255, 0.781);
+    /* background-color: rgba(33, 48, 116, 0.781); */
+    background-color: #6291e9;
     border: none;
     border-radius: 10px;
     text-align: center; 
-}
-
-#congelador:focus {
-    outline: 0;
-    background-color: rgba(38, 71, 218, 0.493);
 }
 
 #settings {
@@ -137,14 +129,12 @@ h2 {
 @media(max-width: 767px) {
     #refrigerador {
         margin-top: 20px;
-        background-color: rgba(136, 251, 255, 0.781);
         border: none;
     }
 
     #congelador {
         margin-top: 13px;
         margin-bottom: 14px;
-        background-color: rgba(136, 251, 255, 0.781);
         border: none;
     }
 

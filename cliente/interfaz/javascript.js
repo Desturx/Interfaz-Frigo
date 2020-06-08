@@ -116,9 +116,6 @@ frigo.on("refrigeradorPuerta", function (abierta) {
 
 //#region FUNCIONES BOTONES FRIGO
 
-
-
-
 // PARA QUE SE GUARDEN LOS ELEMENTOS LOCALMENTE
 /*
 window.content.localStorage[TempF] = 0;

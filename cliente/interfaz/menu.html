@@ -23,7 +23,7 @@
         <!-- Aqui la parte superior de la pantalla donde se encuentran diferentes iconos-->
         <div class="row">
             <div class="col-4">
-                <button onclick ="atenuar();" class="iconoBotones" id="atenuarPantalla" data-toggle="popover" data-placement="auto" data-content="Con este botón puedes atenuar la pantalla" data-trigger="manual"> <!-- POPOVER AQUI -->
+                <button onclick ="atenuar();" class="iconoBotones" id="atenuarPantalla" data-toggle="popover" data-placement="auto" data-content="Con este botón puedes atenuar la pantalla" data-trigger="click"> <!-- POPOVER AQUI -->
                     <i class="fas fa-moon iconos"></i>
                 </button>
             </div>
@@ -51,7 +51,7 @@
                 <div class="card card-block w-40 mx-auto" id="refrigerador">
                     <div class="d-flex justify-content-start" style="padding: 10px;" > 
                         <i class="far fa-snowflake iconos"></i>
-                        <h2 data-toggle="popover" data-placement="auto" data-content="Cambia las opciones del refrigerador aqui" data-trigger="manual">Refrigerador</h2> <!-- POPOVER AQUI -->
+                        <h2 data-toggle="popover" data-placement="auto" data-content="Cambia las opciones del refrigerador aqui" data-trigger="click">Refrigerador</h2> <!-- POPOVER AQUI -->
                     </div>
                     <!-- Slider frigo -->
                     <div class="slidecontainer">
@@ -61,18 +61,18 @@
 
                     <!-- Botones frigo -->
                     <div class="row justify-content-center">
-                        <div class="col-2">
+                        <div class="col-4 col-sm-2">
                             <button class="iconoBotonesOff" id="EcoFrigo" onclick="EcoF();">
                                 <i class="fas fa-leaf iconos"></i>
                             </button>                    
                         </div>
-                        <div class="col-2" >
+                        <div class="col-4 col-sm-2" >
                             <button class="iconoBotonesOff" id="LuzFrigo" onclick="LuzF();">
                                 <i class="fas fa-lightbulb iconos"></i>
                             </button>
                             
                         </div>
-                        <div class="col-2">
+                        <div class="col-4 col-sm-2">
                             <button class="iconoBotonesOff" id="TurboFrigo" onclick="TurboF();">
                                 <i class="fas fa-tachometer-alt iconos"></i>
                             </button>
@@ -94,19 +94,19 @@
                     </div>
                     <!-- Botones congelador -->
                     <div class="row justify-content-center">
-                        <div class="col-2">
+                        <div class="col-4 col-sm-2">
                             <button class="iconoBotonesOff" id="EcoCon" onclick="EcoCon()">
                                 <i class="fas fa-leaf iconos"></i>
                             </button>
                             
                         </div>
-                        <div class="col-2" >
+                        <div class="col-4 col-sm-2" >
                             <button class="iconoBotonesOff" id="LuzCon" onclick="LuzCon()">
                                 <i class="fas fa-lightbulb iconos"></i>
                             </button>
                             
                         </div>
-                        <div class="col-2">
+                        <div class="col-4 col-sm-2">
                             <button class="iconoBotonesOff" id="TurboCon" onclick="TurboCon()">
                                 <i class="fas fa-tachometer-alt iconos"></i>
                             </button>
@@ -117,28 +117,28 @@
         </div>
 
         <!-- los iconos del fondo: botón de apagar y lo que se ocurra -->
-        <div class="row">
+        <div class="row" data-toggle="popover" data-placement="top" data-content="Aqui está para apagar la pantalla, ir a las opciones, pedir la compra y las notificaciones" data-trigger="manual">
             <!-- Botón de apagar pantalla -->
             <div class="col" style="text-align: center;" onclick="window.location.href='index.html'">
-                <button class="iconoBotones" data-toggle="popover" data-placement="auto" data-content="Para apagar la pantalla y volver al modo reloj" data-trigger="manual"> <!-- POPOVER AQUI -->
+                <button class="iconoBotones" > <!-- POPOVER AQUI -->
                     <i class="fas fa-power-off iconos"></i>
                 </button>
             </div>
             <!-- Botón de opciones -->
             <div class="col" style="text-align: center;">
-                <button class="iconoBotones" data-toggle="popover" data-placement="auto" data-content="Cambia aqui las opciones, como la hora, etc.." data-trigger="manual" > <!-- POPOVER AQUI -->
+                <button class="iconoBotones" >
                     <i class="fas fa-cog iconos"></i>
                 </button>
             </div>
             <!-- Botón del carrito de la compra -->
             <div class="col" style="text-align: center;">
-                <button class="iconoBotones" data-toggle="popover" data-placement="auto" data-content="Aqui puedes pedir los que haga falta para tu nevera" data-trigger="manual"> <!-- POPOVER AQUI -->
+                <button class="iconoBotones">
                     <i class="fas fa-shopping-basket iconos"></i>
                 </button>   
             </div>
             <!-- Botón de las alertas -->
             <div class="col" style="text-align: center;">
-                <button class="iconoBotones" data-toggle="popover" data-placement="auto" data-content="Aqui puedes pedir los que haga falta para tu nevera" data-trigger="manual"> <!-- POPOVER AQUI -->
+                <button class="iconoBotones">
                     <i class="fas fa-exclamation-triangle iconos"></i>
                 </button>   
             </div>
