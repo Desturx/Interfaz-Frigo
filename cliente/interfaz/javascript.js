@@ -1,5 +1,9 @@
 var frigo = new Electro(); // variable para gestionar las cosas del frigo
-
+/*    Botones ONCLICK de ECO, LUZ y TURBO     */
+var TempF = 0;
+var TempC = 0;
+var modoEcoF=false;
+var modoEcoC=false;
 
 var ajustesPresencia= false;
 
@@ -11,6 +15,12 @@ frigo.on("connect", function () {
 
     // PARA EL FRIGO
     // modo eco
+    if(modoEcoF == true) {
+        document.getElementById("EcoFrigo").setAttribute("class", "iconoBotonesOn");
+    }
+    else if(modoEcoF == false) {
+        document.getElementById("EcoFrigo").setAttribute("class", "iconoBotonesOff");
+    }  
     // la luz
     if(frigo.refrigeradorLuz == true) {
         document.getElementById("LuzFrigo").setAttribute("class", "iconoBotonesOn");
@@ -28,6 +38,13 @@ frigo.on("connect", function () {
     }
     // PARA EL CONGELADOR
     // modo eco
+    if(modoEcoC == true) {
+        document.getElementById("EcoCon").setAttribute("class", "iconoBotonesOn");
+    }
+    else if(modoEcoC == false) {
+        document.getElementById("EcoCon").setAttribute("class", "iconoBotonesOff");
+    }  
+
     // la luz
     if(frigo.congeladorLuz == true) {
         document.getElementById("LuzCon").setAttribute("class", "iconoBotonesOn");
@@ -98,12 +115,9 @@ frigo.on("refrigeradorPuerta", function (abierta) {
 
 
 //#region FUNCIONES BOTONES FRIGO
-/*    Botones ONCLICK de ECO, LUZ y TURBO     */
 
-var TempF = 0;
-var TempC = 0;
-var modoEcoF=false;
-var modoEcoC=false;
+
+
 
 // PARA QUE SE GUARDEN LOS ELEMENTOS LOCALMENTE
 /*
@@ -118,11 +132,17 @@ function EcoF()
 {
     if( modoEcoF == false){
         modoEcoF= true;
+        document.getElementById("EcoFrigo").setAttribute("class", "iconoBotonesOn");
     }
     else{
         modoEcoF = false;
+        document.getElementById("EcoFrigo").setAttribute("class", "iconoBotonesOff");
     }
     console.log("Eco F ",modoEcoF);
+
+     
+
+
 }
   
 function LuzF()
@@ -159,11 +179,15 @@ function EcoCon()
 {
     if( modoEcoC == false){
         modoEcoC= true;
+        document.getElementById("EcoCon").setAttribute("class", "iconoBotonesOn");
     }
     else{
         modoEcoC = false;
+        document.getElementById("EcoCon").setAttribute("class", "iconoBotonesOff");
     }
     console.log("Eco C ",modoEcoC);
+
+ 
 }
     
 function LuzCon()
