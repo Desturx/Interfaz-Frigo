@@ -24,7 +24,7 @@
         <!-- Aqui la parte superior de la pantalla donde se encuentran diferentes iconos-->
         <div class="row">
             <div class="col-4">
-                <button onclick ="atenuar();" class="iconoBotones" id="atenuarPantalla" data-toggle="popover" data-placement="auto" data-content="Con este botón puedes atenuar la pantalla" data-trigger="click"> <!-- POPOVER AQUI -->
+                <button onclick ="atenuar();" class="iconoBotones" id="atenuarPantalla" data-toggle="popover" data-placement="auto" data-content="Con este botón puedes atenuar la pantalla" data-trigger="manual"> <!-- POPOVER AQUI -->
                     <i class="fas fa-moon iconos"></i>
                 </button>
             </div>
@@ -61,16 +61,21 @@
                 <div class="card card-block w-40 mx-auto" id="refrigerador">
                     <div class="d-flex justify-content-start" style="padding: 10px;" > 
                         <i class="far fa-snowflake iconos"></i>
-                        <h2 data-toggle="popover" data-placement="auto" data-content="Cambia las opciones del refrigerador aqui" data-trigger="click">Refrigerador</h2> <!-- POPOVER AQUI -->
+                        <h2>Refrigerador</h2> <!-- POPOVER AQUI -->
                     </div>
                     <!-- Slider frigo -->
-                    <div class="slidecontainer">
+                    <div class="slidecontainer" data-toggle="popover" data-placement="top" data-content="Cambia la temperatura del refrigerador" data-trigger="manual">
                         <h2 class="Temperatura" ><span id="demo"></span> ºC</h2>
                         <input type="range" min="-20" max="20" value="0" class="slider" id="myRange">
                     </div>
 
                     <!-- Botones frigo -->
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" data-toggle="popover"
+                     data-placement="top"
+                     data-html="true" 
+                     data-content="Activar el modo eco del frigo(<i class='fas fa-leaf'></i>), 
+                     activar la luz del frigo(<i class='fas fa-lightbulb'></i>) 
+                     y el modo turbo del frigo(<i class='fas fa-tachometer-alt'></i>)" data-trigger="manual">
                         <div class="col-4 col-sm-2">
                             <button class="iconoBotonesOff" id="EcoFrigo" onclick="EcoF();">
                                 <i class="fas fa-leaf iconos"></i>
@@ -95,7 +100,7 @@
                 <div class="card card-block w-40 mx-auto" id="congelador">    <!-- Congelador -->
                     <div class ="d-flex justify-content-start" style="padding: 10px;">
                         <i class="fas fa-igloo iconos"></i>
-                        <h2 data-toggle="popover" data-placement="auto" data-content="Cambia las opciones del congelador aqui" data-trigger="manual">Congelador</h2> <!-- POPOVER AQUI -->
+                        <h2>Congelador</h2> <!-- POPOVER AQUI -->
                     </div>
 
                     <div id ="statsCong" class="chart-container" style="display: none; position: relative; height: 300px; width:auto;">
@@ -109,7 +114,13 @@
                             <input type="range" min="-20" max="20" value="0" class="slider" id="myRange2">
                         </div>
                         <!-- Botones congelador -->
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center" style="margin-top: 20px;"
+                        data-toggle="popover"
+                        data-placement="right"
+                        data-html="true" 
+                        data-content="Activar el modo eco del frigo(<i class='fas fa-leaf'></i>), 
+                        activar la luz del frigo(<i class='fas fa-lightbulb'></i>) 
+                        y el modo turbo del frigo(<i class='fas fa-tachometer-alt'></i>)" data-trigger="manual">
                             <div class="col-4 col-sm-2">
                                 <button class="iconoBotonesOff" id="EcoCon" onclick="EcoCon()">
                                     <i class="fas fa-leaf iconos"></i>
@@ -137,12 +148,13 @@
         <div class="row" data-toggle="popover" data-placement="top" 
         data-content="Aqui está para apagar la pantalla(<i class='fas fa-power-off'></i>), 
         ir a las opciones (<i class='fas fa-cog'></i>), 
-        pedir la compra(<i class='fas fa-shopping-basket'></i>)
+        pedir la compra(<i class='fas fa-shopping-basket'></i>),
+        mostrar las estadísticas(<i class='fas fa-chart-line'></i>)
         y las notificaciones(<i class='fas fa-exclamation-triangle'></i>)" 
         data-html="true" data-trigger="manual">
             <!-- Botón de apagar pantalla -->
             <div class="col" style="text-align: center;" onclick="window.location.href='index.html'">
-                <button class="iconoBotones" > <!-- POPOVER AQUI -->
+                <button class="iconoBotones" >
                     <i class="fas fa-power-off iconos"></i>
                 </button>
             </div>
@@ -217,7 +229,7 @@
             TemperaturaC(output.innerHTML);
         }
     </script>
-    <!-- SCRIPT PARA EL CHART -->
+    <!-- SCRIPT PARA EL CHART DEL CONGELADOR -->
     <script>
         var speedCanvas = document.getElementById("speedChart");
         Chart.defaults.global.defaultFontFamily = "Lato";
@@ -230,7 +242,7 @@
             lineTension: 0.3,
             // Set More Options
             fill: false,
-            borderColor: 'red',
+            borderColor: '#ba681c', 
             backgroundColor: 'black'
         };
         
@@ -239,13 +251,13 @@
             data: [20, 15, 60, 60, 65, 30, 70],
             // Set More Options
             fill: false,
-            borderColor: 'yellow',
+            borderColor: '#0037b8',
             backgroundColor: 'black'
 
         };
 
         var speedData = {
-            labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
+            labels: [0],
             datasets: [dataFirst, dataSecond]
         };
 
@@ -257,6 +269,41 @@
             boxWidth: 40,
             fontColor: 'white'
             }
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+
+                gridLines: {
+                    display: true,
+                    color: "#f0f0f0"
+                },
+                scaleLabel: {
+                    display: true,
+                    //labelString: 'Horas',
+                    fontColor:"#f0f0f0" 
+                },
+                ticks: {
+                    fontColor:"#f0f0f0",
+                    fontSize: 15
+                }
+            }],
+            yAxes: [{
+                display: true,
+                gridLines: {
+                    display: true,
+                    color: "#f0f0f0"
+                },
+                scaleLabel: {
+                    display: true,
+                    //labelString: 'Valor',
+                    fontColor:"#f0f0f0" 
+                },
+                ticks: {
+                    fontColor:"#f0f0f0", 
+                    fontSize: 15
+                }
+            }]
         }
         };
 
@@ -265,6 +312,32 @@
         data: speedData,
         options: chartOptions
         });
+
+        function congeladorData(valTemp, valCons)
+        {
+            var temperatura = lineChart.data.datasets[0];
+            var consumo = lineChart.data.datasets[1];
+
+            // esto es el intervalo de tiempo, o sea la x
+            var intervalo = lineChart.data.labels;
+            var lastvalue = lineChart.data.labels[lineChart.data.labels.length-1];
+
+            if(lastvalue == 60) {
+                temperatura.data.shift();
+                temperatura.data.push(valTemp);
+                consumo.data.shift();
+                consumo.data.push(valCons);   
+            }
+            else
+            {
+                temperatura.data.push(valTemp);
+                consumo.data.push(valCons);   
+                intervalo.push(lastvalue + 10);
+            }         
+
+            lineChart.update();
+        }
+
     </script>
 </body>
 
