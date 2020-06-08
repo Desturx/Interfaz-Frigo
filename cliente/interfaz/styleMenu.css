@@ -43,9 +43,6 @@ h2 {
     font-size:2.5em;
 }
 
-
-
-
 .iconoBotones {
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -150,6 +147,8 @@ h2 {
     }
 }
 
+
+
 /*Slidebar*/ 
 .slider {
     -webkit-appearance: none;
@@ -174,7 +173,7 @@ h2 {
     width: 25px;
     height: 25px;
     border-radius: 50%; 
-    background: rgb(67, 94, 247);
+    background: rgb(17, 16, 49);
     cursor: pointer;
   }
   
@@ -182,10 +181,12 @@ h2 {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: rgb(78, 159, 235);
+    background: rgb(17, 16, 49);
     cursor: pointer;
   }
 
 .slidecontainer{
     margin-top: 1em;
 }
+
+

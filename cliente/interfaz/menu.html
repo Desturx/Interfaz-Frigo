@@ -14,7 +14,8 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-	<!-- Mi script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <!-- Mi script -->
     <script src="javascript.js"></script>
 </head>
 
@@ -96,30 +97,38 @@
                         <i class="fas fa-igloo iconos"></i>
                         <h2 data-toggle="popover" data-placement="auto" data-content="Cambia las opciones del congelador aqui" data-trigger="manual">Congelador</h2> <!-- POPOVER AQUI -->
                     </div>
-                    <!-- Slider congelador -->
-                    <div class="slidecontainer">
-                        <h2 class="Temperatura" ><span id="demo2"></span> ºC</h2>
-                        <input type="range" min="-20" max="20" value="0" class="slider" id="myRange2">
+
+                    <div class="chart-container" style="position: relative; height: 300px; width:auto;">
+                        <canvas id="speedChart"></canvas>
+
                     </div>
-                    <!-- Botones congelador -->
-                    <div class="row justify-content-center">
-                        <div class="col-4 col-sm-2">
-                            <button class="iconoBotonesOff" id="EcoCon" onclick="EcoCon()">
-                                <i class="fas fa-leaf iconos"></i>
-                            </button>
-                            
+                    
+                    <div style="display: none;">
+                        <!-- Slider congelador -->
+                        <div class="slidecontainer">
+                            <h2 class="Temperatura" ><span id="demo2"></span> ºC</h2>
+                            <input type="range" min="-20" max="20" value="0" class="slider" id="myRange2">
                         </div>
-                        <div class="col-4 col-sm-2" >
-                            <button class="iconoBotonesOff" id="LuzCon" onclick="LuzCon()">
-                                <i class="fas fa-lightbulb iconos"></i>
-                            </button>
-                            
-                        </div>
-                        <div class="col-4 col-sm-2">
-                            <button class="iconoBotonesOff" id="TurboCon" onclick="TurboCon()">
-                                <i class="fas fa-tachometer-alt iconos"></i>
-                            </button>
-                        </div>
+                        <!-- Botones congelador -->
+                        <div class="row justify-content-center">
+                            <div class="col-4 col-sm-2">
+                                <button class="iconoBotonesOff" id="EcoCon" onclick="EcoCon()">
+                                    <i class="fas fa-leaf iconos"></i>
+                                </button>
+                                
+                            </div>
+                            <div class="col-4 col-sm-2" >
+                                <button class="iconoBotonesOff" id="LuzCon" onclick="LuzCon()">
+                                    <i class="fas fa-lightbulb iconos"></i>
+                                </button>
+                                
+                            </div>
+                            <div class="col-4 col-sm-2">
+                                <button class="iconoBotonesOff" id="TurboCon" onclick="TurboCon()">
+                                    <i class="fas fa-tachometer-alt iconos"></i>
+                                </button>
+                            </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -161,10 +170,11 @@
 	<!-- NUESTROS SCRIPTS -->
 	<script>
         mostrarHora();
-        // mostrar los popover cuando pulso el botón de ayuda
     </script>
+
     <!-- SCRIPTS PARA LOS POPOVER -->
     <script>
+        // mostrar los popover cuando se pulse el botón ayuda
         $('#ayuda').on('click', function() {
             $('[data-toggle="popover"]').popover('toggle');
         });
@@ -200,6 +210,47 @@
             output.innerHTML = this.value;
             TemperaturaC(output.innerHTML);
         }
+    </script>
+    <!-- SCRIPT PARA EL CHART -->
+    <script>
+        var speedCanvas = document.getElementById("speedChart");
+        Chart.defaults.global.defaultFontFamily = "Lato";
+        Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.maintainAspectRatio = false;
+        var dataFirst = {
+            label: "Car A - Speed (mph)",
+            data: [0, 59, 75, 20, 20, 55, 40],
+            lineTension: 0.3,
+            // Set More Options
+        };
+        
+        var dataSecond = {
+            label: "Car B - Speed (mph)",
+            data: [20, 15, 60, 60, 65, 30, 70],
+            // Set More Options
+        };
+
+        var speedData = {
+            labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
+            datasets: [dataFirst, dataSecond]
+        };
+
+        var chartOptions = {
+        legend: {
+            display: true,
+            position: 'top',
+            labels: {
+            boxWidth: 40,
+            fontColor: 'black'
+            }
+        }
+        };
+
+        var lineChart = new Chart(speedCanvas, {
+        type: 'line',
+        data: speedData,
+        options: chartOptions
+        });
     </script>
 </body>
 
