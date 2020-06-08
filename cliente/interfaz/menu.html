@@ -257,7 +257,7 @@
         };
 
         var speedData = {
-            labels: [0],
+            labels: [-60, -50, -40, -30, -20, -10, 0],
             datasets: [dataFirst, dataSecond]
         };
 
@@ -291,7 +291,7 @@
             yAxes: [{
                 display: true,
                 gridLines: {
-                    display: true,
+                    display: false,
                     color: "#f0f0f0"
                 },
                 scaleLabel: {
@@ -322,7 +322,7 @@
             var intervalo = lineChart.data.labels;
             var lastvalue = lineChart.data.labels[lineChart.data.labels.length-1];
 
-            if(lastvalue == 60) {
+            if(lastvalue == 0) {
                 temperatura.data.shift();
                 temperatura.data.push(valTemp);
                 consumo.data.shift();
@@ -332,7 +332,7 @@
             {
                 temperatura.data.push(valTemp);
                 consumo.data.push(valCons);   
-                intervalo.push(lastvalue + 10);
+                //intervalo.push(lastvalue + 10);
             }         
 
             lineChart.update();
