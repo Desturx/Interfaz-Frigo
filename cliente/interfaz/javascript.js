@@ -320,6 +320,26 @@ function irMenuInicio()
         frigo.frigorificoPantalla = 2; // pone la pantalla en encendido
     }
 }
+
+// para que se escondan los botones y se muestren los charts
+var mostrarStats = false;
+function toggleStats()
+{
+    if(!mostrarStats) 
+    {
+        mostrarStats = true;
+        document.getElementById("seccionCong").style.display = "none";
+        document.getElementById("statsCong").style.display = "block";
+    }
+    else if(mostrarStats)
+    {
+        mostrarStats = false;
+        document.getElementById("seccionCong").style.display = "block";
+        document.getElementById("statsCong").style.display = "none";
+    }
+}
+
+
 // Cuando se vuelve al reloj
 function volverAlReloj() 
 {
@@ -342,7 +362,6 @@ function cambiarEstadoPantalla()
         document.getElementById("fechaReloj").style.visibility = "visible";
     }
 }
-
 // Función para mostrar la fecha
 function mostrarFecha()
 {
