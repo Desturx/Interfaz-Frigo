@@ -10,7 +10,7 @@ var ajustesPresencia= false;
 //#region FUNCIONES AL CONECTARSE
 // Función para cuando se conecta la interfaz con el frigo
 frigo.on("connect", function () {
-    console.log("Ya estoy conectado con el frigorifico!!!")
+    //console.log("Ya estoy conectado con el frigorifico!!!")
     console.log("Con este hay " + frigo.clientes + " clientes conectados");
 
     // PARA EL FRIGO
@@ -390,10 +390,15 @@ function mostrarHora()
     document.getElementById("horaReloj").textContent = hora;
     setTimeout(mostrarHora, 1000);
  
-    
+    //Temperatura que quiere el cliente
     ControlTempF();
     ControlTempC();
 
+    //Grafico (da fallo al iniciar, pero va)
+    sacarDato();
+    
+
+    //Proximidad con la puerta, apaga y enciende luces
     sensorProximidadApaga();
     sensorProximidadEnciende();
 
@@ -404,6 +409,7 @@ function mostrarHora()
     alertaConsumo();
 
 
+    //Establece Pedido
     setPedido();
 
    
@@ -445,6 +451,59 @@ function tiempoPuerta(hora){            //Calcula cuanto tiempo pasa la puerta d
     }
     
 }
+
+
+//GRAFICOS
+function consumoFrigo(){
+    let motorF=0;
+    let luzF=0;
+    let consumo=0;
+
+    //Consumo Motor refrigerador
+    if(frigo.refrigeradorMotor==2){
+        motorF=400;
+    }
+    else if(frigo.refrigeradorMotor==1){
+        motorF=200;
+    }
+    //Consumo Luz 
+    if(frigo.refrigeradorLuz==true){
+        luzF=10;
+    }
+    consumo =  motorF + luzF;
+    return consumo;
+    
+}
+
+function consumoCongelador(){
+    let motorF=0;
+    let luzF=0;
+    let consumo=0;
+
+    //Consumo Motor refrigerador
+    if(frigo.congeladorMotor==2){
+        motorF=400;
+    }
+    else if(frigo.congeladorMotor==1){
+        motorF=200;
+    }
+    //Consumo Luz 
+    if(frigo.congeladorLuz==true){
+        luzF=10;
+    }
+    consumo =  motorF + luzF;
+    return consumo;
+}
+
+function sacarDato(){
+   if(cadaMin%10==0){
+
+    addData(frigo.refrigeradorTemperatura,consumoFrigo(),0);
+    addData(frigo.congeladorTemperatura,consumoCongelador(),1);
+   }
+    
+}
+
 
 // ALERTAS
 //Si no se han mostradu aun es false, si ya se han mostrado es true. Asi se evita enviar la alerta varias veces
