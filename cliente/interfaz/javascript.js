@@ -522,7 +522,7 @@ function cambiarACarrito()
                             html +=  "Pescado: " + pedidoGuardado["Pescado"];
                             html +=` 
                                     <button onclick="sumaPedido(4);">+</button>
-                                    <button onclick="restaPedido(3);">-</button> 
+                                    <button onclick="restaPedido(4);">-</button> 
                                     <button onclick="this.parentNode.remove();  quitaPedido(4);"
                                     style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
