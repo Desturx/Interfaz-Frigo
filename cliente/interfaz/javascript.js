@@ -10,7 +10,7 @@ var ajustesPresencia= false;
 //#region FUNCIONES AL CONECTARSE
 // Función para cuando se conecta la interfaz con el frigo
 frigo.on("connect", function () {
-    console.log("Ya estoy conectado con el frigorifico!!!")
+    //console.log("Ya estoy conectado con el frigorifico!!!")
     console.log("Con este hay " + frigo.clientes + " clientes conectados");
 
     // PARA EL FRIGO
@@ -412,10 +412,15 @@ function mostrarHora()
     document.getElementById("horaReloj").textContent = hora;
     setTimeout(mostrarHora, 1000);
  
-    
+    //Temperatura que quiere el cliente
     ControlTempF();
     ControlTempC();
 
+    //Grafico (da fallo al iniciar, pero va)
+    sacarDato();
+    
+
+    //Proximidad con la puerta, apaga y enciende luces
     sensorProximidadApaga();
     sensorProximidadEnciende();
 
@@ -426,6 +431,7 @@ function mostrarHora()
     alertaConsumo();
 
 
+    //Establece Pedido
     setPedido();
 
    
@@ -467,6 +473,59 @@ function tiempoPuerta(hora){            //Calcula cuanto tiempo pasa la puerta d
     }
     
 }
+
+
+//GRAFICOS
+function consumoFrigo(){
+    let motorF=0;
+    let luzF=0;
+    let consumo=0;
+
+    //Consumo Motor refrigerador
+    if(frigo.refrigeradorMotor==2){
+        motorF=400;
+    }
+    else if(frigo.refrigeradorMotor==1){
+        motorF=200;
+    }
+    //Consumo Luz 
+    if(frigo.refrigeradorLuz==true){
+        luzF=10;
+    }
+    consumo =  motorF + luzF;
+    return consumo;
+    
+}
+
+function consumoCongelador(){
+    let motorF=0;
+    let luzF=0;
+    let consumo=0;
+
+    //Consumo Motor refrigerador
+    if(frigo.congeladorMotor==2){
+        motorF=400;
+    }
+    else if(frigo.congeladorMotor==1){
+        motorF=200;
+    }
+    //Consumo Luz 
+    if(frigo.congeladorLuz==true){
+        luzF=10;
+    }
+    consumo =  motorF + luzF;
+    return consumo;
+}
+
+function sacarDato(){
+   if(cadaMin%10==0){
+
+    addData(frigo.refrigeradorTemperatura,consumoFrigo(),0);
+    addData(frigo.congeladorTemperatura,consumoCongelador(),1);
+   }
+    
+}
+
 
 // ALERTAS
 //Si no se han mostradu aun es false, si ya se han mostrado es true. Asi se evita enviar la alerta varias veces
@@ -567,11 +626,12 @@ function alertaPuerta(){
     
         if(frigo.refrigeradorPuerta==true && TPuertafri>20 || frigo.congeladorPuerta==true && TPuertacon>20){
             frigo.frigorificoAlarma=true;
-            console.log("AA");
+            
             mostrarPuerta=true;
         }
         else{
             frigo.frigorificoAlarma=false;
+            mostrarPuerta=false;
         }
 }
 
@@ -641,7 +701,7 @@ function alertaConsumo(){
   
 
         aConsum=true;
-        //console.log("Que explota!!");
+        console.log("Que explota!!");
     }      
 
     if(cadaMin>59){
@@ -657,31 +717,31 @@ function alertaConsumo(){
 var guardavar=-1;           //Con esta comprueba si ha cambiado el codigo de pedido para añadir uno nuevo
 var pedidoGuardado=[];      //Nombre de las variables elegidas
 //Cantidades de los productos (leche, huevo,carne,pescado)
-var cantLeche=0;
-var cantHuevo=0;
-var cantCarne=0;
-var cantPescado=0;
+pedidoGuardado["Leche"]=0;
+pedidoGuardado["Huevo"]=0;
+pedidoGuardado["Carne"]=0;
+pedidoGuardado["Pescado"]=0;
+
+
 
 //Aqui clasifica y suma los pedidos
 function realizaPedido(){
 
     if(frigo.frigorificoCodigo== "11111111"){
-        pedidoGuardado.push("Leche");  
-        cantLeche= cantLeche+1;
+        pedidoGuardado["Leche"] = pedidoGuardado["Leche"] +1;
+         
+        
         
     }
     if(frigo.frigorificoCodigo== "22222222"){
-        pedidoGuardado.push("Huevo");  
-        cantHuevo= cantHuevo+1;
+        pedidoGuardado["Huevo"] = pedidoGuardado["Huevo"] +1;
     }
     if(frigo.frigorificoCodigo== "33333333"){
-        pedidoGuardado.push("Carne");
-        cantCarne= cantCarne+1;
+        pedidoGuardado["Carne"]=pedidoGuardado["Carne"]+1;
         
     }
     if(frigo.frigorificoCodigo== "44444444"){
-        pedidoGuardado.push("Pescado"); 
-        cantPescado= cantPescado+1; 
+        pedidoGuardado["Pescado"]=pedidoGuardado["Pescado"]+1
     }
 
     
