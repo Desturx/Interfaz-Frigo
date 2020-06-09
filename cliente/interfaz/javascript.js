@@ -544,6 +544,25 @@ function mostrarHora()
 
    
 }
+
+function mostrarHoraInicio() 
+{
+    var tiempo = new Date();
+    var h = tiempo.getHours();
+    var m = tiempo.getMinutes();
+    var s = tiempo.getSeconds();
+
+    if(h == 0) { h = 24 }
+    if(h > 24) { h = h - 24;}
+    if(h < 10) { h = "0" + h; }
+    if(m < 10) { m = "0" + m; }
+    if(s < 10) { s = "0" + s; }
+
+    var hora = h + ":" + m + ":" + s;
+    document.getElementById("horaReloj").innerHTML = hora; // este no funciona en firefox, por eso se usab también la de abajo
+    document.getElementById("horaReloj").textContent = hora;
+    setTimeout(mostrarHora, 1000);
+}
     
 /* Sensores */
 function  sensorProximidadApaga(){                      //Apaga las luces en caso de que no sienta a nadie
@@ -658,6 +677,8 @@ function comprobarNotificaciones()
     {   
         document.getElementById("cantNotificaciones").style.visibility = "visible"; 
         document.getElementById("cantNotificaciones").innerHTML = suma;
+        // CAMBIARLE EL COLOR AL ICONO DE LA ALERTA
+        //document.getElementById("iconoAlertas").style.color = "red";
     }
     else
     {
