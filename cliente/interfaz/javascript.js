@@ -390,6 +390,290 @@ function mostrarHora()
     
     ControlTempF();
     ControlTempC();
+
+    sensorProximidadApaga();
+    sensorProximidadEnciende();
+
+    //Alertas
+    tiempoPuerta(hora);
+    alertaPuerta();
+    alertaTemperatura();
+    alertaConsumo();
+
+
+    setPedido();
+
+   
 }
     
+/* Sensores */
+function  sensorProximidadApaga(){                      //Apaga las luces en caso de que no sienta a nadie
+    if(frigo.frigorificoPresencia == false && frigo.refrigeradorPuerta==false && frigo.congeladorPuerta==false ){
+        frigo.frigorificoPantalla=0;
+        frigo.refrigeradorLuz=false;
+        frigo.congeladorLuz=false;
+    }
+    
+}
 
+function  sensorProximidadEnciende(){
+    if(frigo.frigorificoPresencia == true){
+        frigo.frigorificoPantalla=2;
+        
+    }
+    
+}
+
+var TPuertafri = 0;
+var TPuertacon=0;
+function tiempoPuerta(hora){            //Calcula cuanto tiempo pasa la puerta del refirgerador o congelador abierta
+    if(frigo.refrigeradorPuerta==true){
+        TPuertafri=TPuertafri+1;
+        
+    }
+    else{
+        TPuertafri=0;
+    }
+    if(frigo.congeladorPuerta==true){
+        TPuertacon=TPuertacon+1;
+    }
+    else{
+        TPuertacon=0;
+    }
+    
+}
+
+// ALERTAS
+//Si no se han mostradu aun es false, si ya se han mostrado es true. Asi se evita enviar la alerta varias veces
+var aTemp=false;
+var aConsum=false;
+
+/*const alerta = document.querySelector('#alerta');
+
+alerta.addEventListener('click', () =>{
+    console.log("Alerta");
+});*/
+var mostrarPuerta=false;
+var mostrarTempF=false;
+var mostrarTempC=false;
+var mostrarCon=false;
+
+function mostrarAlertas(){
+    if(mostrarPuerta==true){
+        Command: toastr["error"]("Una de tus puertas esta abierta", "Puerta Abierta")
+
+        toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "newestOnTop": true,
+          "progressBar": false,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": true,
+          "onclick": null,
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }  
+
+        mostrarPuerta=false;
+    }
+
+    if(mostrarTempF==true){
+        Command: toastr["error"]("La temperatura de tu refigerador es alta", "Temperatura Refrigerador")
+
+        toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "newestOnTop": true,
+          "progressBar": false,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": true,
+          "onclick": null,
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        } 
+        mostrarTempF=false;    
+    }
+
+    if(mostrarTempC==true){
+        Command: toastr["error"]("La temperatura de tu congelador es alta", "Temperatura Congelador")
+
+        toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "newestOnTop": true,
+          "progressBar": false,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": true,
+          "onclick": null,
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }   
+        mostrarTempC=false;
+    }
+
+    if(mostrarCon==true){
+        Command: toastr["error"]("Su consumo de energía es alto", "Consumo Energético")
+
+        toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "newestOnTop": true,
+          "progressBar": false,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": true,
+          "onclick": null,
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+
+        mostrarCon=false;
+    }
+}
+
+function alertaPuerta(){
+    
+        if(frigo.refrigeradorPuerta==true && TPuertafri>20 || frigo.congeladorPuerta==true && TPuertacon>20){
+            frigo.frigorificoAlarma=true;
+            console.log("AA");
+            mostrarPuerta=true;
+        }
+        else{
+            frigo.frigorificoAlarma=false;
+        }
+}
+
+
+function alertaTemperatura(){
+    
+    if(aTemp==false){
+        if(frigo.refrigeradorTemperatura>10){  
+            aTemp=true; 
+        }
+        if(frigo.congeladorTemperatura>2){
+            aTemp=true;
+        }
+    }
+
+}
+
+var consumido=0;            //Numero de mili-vatios consumidos en el minuto
+var cadaMin=0;              //Cont para indicar el tiempo, si llega a 60 vuelve a 0 y resetea consumido
+
+
+function calculoConsumo(){
+    let motorF=0;
+    let motorC=0;
+    let pantalla=0;
+    let luzF=0;
+    let luzC=0;
+
+     //Consumo Motor refrigerador
+    if(frigo.refrigeradorMotor==2){
+        motorF=400;
+    }
+    else if(frigo.refrigeradorMotor==1){
+        motorF=200;
+    }
+
+    //Consumo Motor congelador
+    if(frigo.congeladorMotor==2){
+        motorC=400;
+    }
+    else if(frigo.congeladorMotor==1){
+        motorC=200;
+    }
+
+    //Consumo Pantalla
+    if(frigo.frigorificoPantalla==2){
+        pantalla=50;
+    }
+    else if(frigo.frigorificoPantalla==1){
+        pantalla=20;
+    }
+
+     //Consumo Luz 
+     if(frigo.refrigeradorLuz==true){
+         luzF=10;
+     }
+     if(frigo.congeladorLuz==true){
+         luzC=10;
+     }
+
+     consumido = consumido + motorF + motorC + pantalla + luzF + luzC;
+
+}
+
+function alertaConsumo(){
+    cadaMin++;
+    calculoConsumo();
+    
+    if(consumido> 26100 && aConsum==false)   {  //26100 = todo activado a full durante medio minuto
+  
+
+        aConsum=true;
+        //console.log("Que explota!!");
+    }      
+
+    if(cadaMin>59){
+        cadaMin=0;
+        consumido=0;
+        aConsum=false;
+        aTemp=false;
+        //console.log("Ya no: "+consumido);
+    }
+}
+
+
+//PEDIDOS  
+var guardavar=-1;           //Con esta comprueba si ha cambiado el codigo de pedido para añadir uno nuevo
+var pedidoGuardado=[];      //Nombre de las variables elegidas
+//Cantidades de los productos (leche, huevo,carne,pescado)
+var cantLeche=0;
+var cantHuevo=0;
+var cantCarne=0;
+var cantPescado=0;
+
+
+//Aqui clasifica y suma los pedidos
+function realizaPedido(){
+    
+    if(frigo.frigorificoCodigo== "11111111"){
+        pedidoGuardado.push("Leche");  
+        cantLeche= cantLeche+1;
+        
+    }
+    if(frigo.frigorificoCodigo== "22222222"){
+        pedidoGuardado.push("Huevo");  
+        cantHuevo= cantHuevo+1;
+    }
+    if(frigo.frigorificoCodigo== "33333333"){
+        pedidoGuardado.push("Carne");
+        cantCarne= cantCarne+1;
+        
+    }
+    if(frigo.frigorificoCodigo== "44444444"){
+        pedidoGuardado.push("Pescado"); 
+        cantPescado= cantPescado+1; 
+    }
+
+    
+}
+
+//Primero llama aquí para comprobar que se ha elegido un producto nuevo
+function setPedido(){         
+    let actual = frigo.frigorificoCodigo;
+    if(guardavar!=actual){
+        guardavar=frigo.frigorificoCodigo;
+        realizaPedido();
+    }
+   
+    
+}
