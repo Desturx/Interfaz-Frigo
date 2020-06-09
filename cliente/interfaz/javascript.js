@@ -453,68 +453,77 @@ var actualizaPedido=false;
 
 function cambiarACarrito()
 {
-    if(actualizaPedido==true){
-        var div = document.getElementById("divDesplegable");
+    var div = document.getElementById("divDesplegable");
 
-        var html = `
-        <div class="card card-block w-30 mx-auto" id="desplegable" >
-                        <div class="row" style="text-align: center; margin-bottom: 20px;">
-                            <h2><i class="fas fa-shopping-basket" style="margin-right: 10px;"></i>Lista de la compra</h2>
-                        </div>
-                        <div class="row h-100"style="justify-content: center;" >
-                            <ul id="listaCompra" class="list-group list-group-flush" style="width: 80%;">`
-    
-                            if(pedidoGuardado["Leche"]>0){
-                                html +=`<li class="list-group-item">`
-                                html +=  "Leche: " + pedidoGuardado["Leche"];
-                                html +=` <button onclick="this.parentNode.remove();"
-                                         style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                         <span aria-hidden="true">&times;</span>
-                                        </button> 
-                                        </li>`
-                            }
-    
-                            if(pedidoGuardado["Huevo"]>0){
-                                html +=`<li class="list-group-item">`
-                                html +=  "Huevo: " + pedidoGuardado["Huevo"];
-                                html +=` <button onclick="this.parentNode.remove();"
-                                         style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                         <span aria-hidden="true">&times;</span>
-                                        </button> 
-                                        </li>`
-                            }
-    
-                            if(pedidoGuardado["Carne"]>0){
-                                html +=`<li class="list-group-item">`
-                                html +=  "Carne: " + pedidoGuardado["Carne"];
-                                html +=` <button onclick="this.parentNode.remove();"
-                                         style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                         <span aria-hidden="true">&times;</span>
-                                        </button> 
-                                        </li>`
-                            }
-    
-                            if(pedidoGuardado["Pescado"]>0){
-                                html +=`<li class="list-group-item">`
-                                html +=  "Pescado: " + pedidoGuardado["Pescado"];
-                                html +=` <button onclick="this.parentNode.remove();"
-                                         style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                         <span aria-hidden="true">&times;</span>
-                                        </button> 
-                                        </li>`
-                            }
-    
-                                
-        html += `  </ul>
-                    <div class="col-12">
-                    <button onclick="comprarPedido()" >Comprar</button>
-                        </div>
-                      </div>
+    var html = `
+    <div class="card card-block w-30 mx-auto" id="desplegable" >
+                    <div class="row" style="text-align: center; margin-bottom: 20px;">
+                        <h2><i class="fas fa-shopping-basket" style="margin-right: 10px;"></i>Lista de la compra</h2>
+                    </div>
+                    <div class="row h-100"style="justify-content: center;" >
+                        <ul id="listaCompra" class="list-group list-group-flush" style="width: 80%;">`
+
+                        if(pedidoGuardado["Leche"]>0){
+                            html +=`<li class="list-group-item">`
+                            html +=  "Leche: " + pedidoGuardado["Leche"];
+                            html +=` 
+                                    <button onclick="">+</button>
+                                    <button onclick="">-</button>
+                                    <button onclick="this.parentNode.remove();"
+                                    style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button> 
+                                    </li>`
+                        }
+
+                        if(pedidoGuardado["Huevo"]>0){
+                            html +=`<li class="list-group-item">`
+                            html +=  "Huevo: " + pedidoGuardado["Huevo"];
+                            html +=`
+                                    <button onclick="">+</button>
+                                    <button onclick="">-</button>
+                                    <button onclick="this.parentNode.remove();"
+                                    style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button> 
+                                    </li>`
+                        }
+
+                        if(pedidoGuardado["Carne"]>0){
+                            html +=`<li class="list-group-item">`
+                            html +=  "Carne: " + pedidoGuardado["Carne"];
+                            html +=`
+                                    <button onclick="">+</button>   
+                                    <button onclick="">-</button> 
+                                    <button onclick="this.parentNode.remove();"
+                                    style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button> 
+                                    </li>`
+                        }
+
+                        if(pedidoGuardado["Pescado"]>0){
+                            html +=`<li class="list-group-item">`
+                            html +=  "Pescado: " + pedidoGuardado["Pescado"];
+                            html +=` 
+                                    <button onclick="">+</button>
+                                    <button onclick="">-</button> 
+                                    <button onclick="this.parentNode.remove();"
+                                    style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button> 
+                                    </li>`
+                        }
+
+                            
+    html += `  </ul>
+                <div class="col-12">
+                <button onclick="comprarPedido()" >Comprar</button>
                     </div>
     
         `
         div.innerHTML = html;
-    }
+    
     
 }
 
