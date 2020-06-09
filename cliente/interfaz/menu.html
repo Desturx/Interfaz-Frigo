@@ -67,37 +67,46 @@
                         <i class="far fa-snowflake iconos"></i>
                         <h2>Refrigerador</h2> <!-- POPOVER AQUI -->
                     </div>
-                    <!-- Slider frigo -->
-                    <div class="slidecontainer" data-toggle="popover" data-placement="top" data-content="Cambia la temperatura del refrigerador" data-trigger="manual">
-                        <h2 class="Temperatura" ><span id="demo"></span> ºC</h2>
-                        <input type="range" min="-20" max="20" value="0" class="slider" id="myRange">
+
+                    <div id ="statsFrigo" class="chart-container" style="display: none; position: relative; height: 300px; width:auto;">
+                        <canvas id="canvasFrigo"></canvas>
                     </div>
 
-                    <!-- Botones frigo -->
-                    <div class="row justify-content-center" data-toggle="popover"
-                     data-placement="top"
-                     data-html="true" 
-                     data-content="Activar el modo eco del frigo(<i class='fas fa-leaf'></i>), 
-                     activar la luz del frigo(<i class='fas fa-lightbulb'></i>) 
-                     y el modo turbo del frigo(<i class='fas fa-tachometer-alt'></i>)" data-trigger="manual">
-                        <div class="col-4 col-sm-2">
-                            <button class="iconoBotonesOff" id="EcoFrigo" onclick="EcoF();">
-                                <i class="fas fa-leaf iconos"></i>
-                            </button>                    
+                    <div id="seccionFrigo" style="width: 100%; height: 100%;">
+                        <!-- Slider frigo -->
+                        <div class="slidecontainer" data-toggle="popover" data-placement="top" data-content="Cambia la temperatura del refrigerador" data-trigger="manual">
+                            <h2 class="Temperatura" ><span id="demo"></span> ºC</h2>
+                            <input type="range" min="-20" max="20" value="0" class="slider" id="myRange">
                         </div>
-                        <div class="col-4 col-sm-2" >
-                            <button class="iconoBotonesOff" id="LuzFrigo" onclick="LuzF();">
-                                <i class="fas fa-lightbulb iconos"></i>
-                            </button>
-                            
-                        </div>
-                        <div class="col-4 col-sm-2">
-                            <button class="iconoBotonesOff" id="TurboFrigo" onclick="TurboF();">
-                                <i class="fas fa-tachometer-alt iconos"></i>
-                            </button>
-                           
+    
+                        <!-- Botones frigo -->
+                        <div class="row justify-content-center" data-toggle="popover"
+                         data-placement="top"
+                         data-html="true" 
+                         data-content="Activar el modo eco del frigo(<i class='fas fa-leaf'></i>), 
+                         activar la luz del frigo(<i class='fas fa-lightbulb'></i>) 
+                         y el modo turbo del frigo(<i class='fas fa-tachometer-alt'></i>)" data-trigger="manual">
+                            <div class="col-4 col-sm-2">
+                                <button class="iconoBotonesOff" id="EcoFrigo" onclick="EcoF();">
+                                    <i class="fas fa-leaf iconos"></i>
+                                </button>                    
+                            </div>
+                            <div class="col-4 col-sm-2" >
+                                <button class="iconoBotonesOff" id="LuzFrigo" onclick="LuzF();">
+                                    <i class="fas fa-lightbulb iconos"></i>
+                                </button>
+                                
+                            </div>
+                            <div class="col-4 col-sm-2">
+                                <button class="iconoBotonesOff" id="TurboFrigo" onclick="TurboF();">
+                                    <i class="fas fa-tachometer-alt iconos"></i>
+                                </button>
+                               
+                            </div>
                         </div>
                     </div>
+
+
                     
                 </div>
                 <!-- Opciones de la parte de abajo-->
@@ -108,7 +117,7 @@
                     </div>
 
                     <div id ="statsCong" class="chart-container" style="display: none; position: relative; height: 300px; width:auto;">
-                        <canvas id="speedChart"></canvas>
+                        <canvas id="canvasCong"></canvas>
                     </div>
                     
                     <div id="seccionCong" style="width: 100%; height: 100%;">
@@ -192,6 +201,17 @@
 	<!-- NUESTROS SCRIPTS -->
 	<script>
         mostrarHora();
+        
+        /* Alertas */
+        const alerta = document.querySelector('#alerta');
+
+        alerta.addEventListener('click', () =>{
+            console.log("Alerta");
+            mostrarAlertas();
+        });
+
+
+
     </script>
 
     <!-- SCRIPTS PARA LOS POPOVER -->
@@ -214,6 +234,7 @@
         });
         */
     </script>
+
     <!-- SCRIPT PARA LOS SLIDERS DE LA TEMPERATURA -->
     <script>
         var slider1 = document.getElementById("myRange");           /* SLIDER RANGE BAR */ 
@@ -233,9 +254,10 @@
             TemperaturaC(output.innerHTML);
         }
     </script>
+
     <!-- SCRIPT PARA EL CHART DEL CONGELADOR -->
     <script>
-        var speedCanvas = document.getElementById("speedChart");
+        var canvasFrigo = document.getElementById("canvasFrigo");
         Chart.defaults.global.defaultFontFamily = "Lato";
         Chart.defaults.global.defaultFontSize = 18;
         Chart.defaults.global.maintainAspectRatio = false;
@@ -311,44 +333,126 @@
         }
         };
 
-        var lineChart = new Chart(speedCanvas, {
-        type: 'line',
-        data: speedData,
-        options: chartOptions
-        });
-
-
-        /* Alertas */
-        const alerta = document.querySelector('#alerta');
-
-        alerta.addEventListener('click', () =>{
-            console.log("Alerta");
-            mostrarAlertas();
-        });
+        var lineChart = new Chart(canvasFrigo, {
+            type: 'line',
+            data: speedData,
+            options: chartOptions
+        });       
+    </script>
+    <script>
+        var canvasCong = document.getElementById("canvasCong");
+        Chart.defaults.global.defaultFontFamily = "Lato";
+        Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.maintainAspectRatio = false;
         
-        function congeladorData(valTemp, valCons)
-        {
-            var temperatura = lineChart.data.datasets[0];
-            var consumo = lineChart.data.datasets[1];
+        var dataFirst = {
+            label: "Temperatura",
+            data: [0, 59, 75, 20, 20, 55, 40],
+            lineTension: 0.3,
+            // Set More Options
+            fill: false,
+            borderColor: '#ba681c', 
+            backgroundColor: 'black'
+        };
+        
+        var dataSecond = {
+            label: "Consumo",
+            data: [20, 15, 60, 60, 65, 30, 70],
+            // Set More Options
+            fill: false,
+            borderColor: '#0037b8',
+            backgroundColor: 'black'
 
-            // esto es el intervalo de tiempo, o sea la x
-            var intervalo = lineChart.data.labels;
-            var lastvalue = lineChart.data.labels[lineChart.data.labels.length-1];
+        };
 
-            if(lastvalue == 0) {
-                temperatura.data.shift();
-                temperatura.data.push(valTemp);
-                consumo.data.shift();
-                consumo.data.push(valCons);   
+        var speedData = {
+            labels: [-60, -50, -40, -30, -20, -10, 0],
+            datasets: [dataFirst, dataSecond]
+        };
+
+        var chartOptions = {
+        legend: {
+            display: true,
+            position: 'top',
+            labels: {
+            boxWidth: 40,
+            fontColor: 'white'
             }
-            else
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+
+                gridLines: {
+                    display: true,
+                    color: "#f0f0f0"
+                },
+                scaleLabel: {
+                    display: true,
+                    //labelString: 'Horas',
+                    fontColor:"#f0f0f0" 
+                },
+                ticks: {
+                    fontColor:"#f0f0f0",
+                    fontSize: 15
+                }
+            }],
+            yAxes: [{
+                display: true,
+                gridLines: {
+                    display: false,
+                    color: "#f0f0f0"
+                },
+                scaleLabel: {
+                    display: true,
+                    //labelString: 'Valor',
+                    fontColor:"#f0f0f0" 
+                },
+                ticks: {
+                    fontColor:"#f0f0f0", 
+                    fontSize: 15
+                }
+            }]
+        }
+        };
+
+        var lineChart2 = new Chart(canvasCong, {
+            type: 'line',
+            data: speedData,
+            options: chartOptions
+        });
+
+        
+        function addData(valTemp, valCons, tipo)
+        {
+            var temperaturaFrigo = lineChart.data.datasets[0];
+            var consumoFrigo = lineChart.data.datasets[1];
+
+            var temperaturaCong = lineChart2.data.datasets[0];
+            var consumoCong = lineChart2.data.datasets[1];
+           
+            // esto es el intervalo de tiempo, o sea la x
+            // var intervalo = lineChart.data.labels;
+            // var lastvalue = lineChart.data.labels[lineChart.data.labels.length-1];
+
+            if(tipo == 0) {
+                temperaturaFrigo.data.shift();
+                temperaturaFrigo.data.push(valTemp);
+                consumoFrigo.data.shift();
+                consumoFrigo.data.push(valCons);  
+                
+            }
+            else if(tipo == 1)
             {
-                temperatura.data.push(valTemp);
-                consumo.data.push(valCons);   
-                //intervalo.push(lastvalue + 10);
-            }         
+                temperaturaCong.data.shift();
+                temperaturaCong.data.push(valTemp);
+                consumoCong.data.shift();
+                consumoCong.data.push(valCons);  
+            }   
 
             lineChart.update();
+            lineChart2.update();
+            
         }
 
     </script>

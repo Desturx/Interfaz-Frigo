@@ -329,13 +329,17 @@ function toggleStats()
     {
         mostrarStats = true;
         document.getElementById("seccionCong").style.display = "none";
+        document.getElementById("seccionFrigo").style.display = "none";
         document.getElementById("statsCong").style.display = "block";
+        document.getElementById("statsFrigo").style.display = "block";
     }
     else if(mostrarStats)
     {
         mostrarStats = false;
         document.getElementById("seccionCong").style.display = "block";
+        document.getElementById("seccionFrigo").style.display = "block";
         document.getElementById("statsCong").style.display = "none";
+        document.getElementById("statsFrigo").style.display = "none";
     }
 }
 
@@ -550,7 +554,6 @@ function alertaPuerta(){
         }
 }
 
-
 function alertaTemperatura(){
     
     if(aTemp==false){
@@ -566,8 +569,6 @@ function alertaTemperatura(){
 
 var consumido=0;            //Numero de mili-vatios consumidos en el minuto
 var cadaMin=0;              //Cont para indicar el tiempo, si llega a 60 vuelve a 0 y resetea consumido
-
-
 function calculoConsumo(){
     let motorF=0;
     let motorC=0;
@@ -631,7 +632,6 @@ function alertaConsumo(){
     }
 }
 
-
 //PEDIDOS  
 var guardavar=-1;           //Con esta comprueba si ha cambiado el codigo de pedido para añadir uno nuevo
 var pedidoGuardado=[];      //Nombre de las variables elegidas
@@ -643,10 +643,9 @@ pedidoGuardado["Pescado"]=0;
 
 
 
-
 //Aqui clasifica y suma los pedidos
 function realizaPedido(){
-    
+
     if(frigo.frigorificoCodigo== "11111111"){
         pedidoGuardado["Leche"] = pedidoGuardado["Leche"] +1;
          
