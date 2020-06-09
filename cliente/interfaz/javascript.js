@@ -332,6 +332,36 @@ pedidoGuardado["Huevo"]=0;
 pedidoGuardado["Carne"]=0;
 pedidoGuardado["Pescado"]=0;
 
+function sumaPedido(number){
+    if(number==1){
+        pedidoGuardado["Leche"]=pedidoGuardado["Leche"]+1; 
+    }
+    if(number==2){
+        pedidoGuardado["Huevo"]=pedidoGuardado["Huevo"]+1;
+    }
+    if(number==3){
+        pedidoGuardado["Carne"]=pedidoGuardado["Carne"]+1;
+    }
+    if(number==4){
+        pedidoGuardado["Pescado"]=pedidoGuardado["Pescado"]+1;
+    }
+}
+
+
+function restaPedido(number){
+    if(number==1){
+        pedidoGuardado["Leche"]=pedidoGuardado["Leche"]-1; 
+    }
+    if(number==2){
+        pedidoGuardado["Huevo"]=pedidoGuardado["Huevo"]-1;
+    }
+    if(number==3){
+        pedidoGuardado["Carne"]=pedidoGuardado["Carne"]-1;
+    }
+    if(number==4){
+        pedidoGuardado["Pescado"]=pedidoGuardado["Pescado"]-1;
+    }
+}
 
 
 //Aqui clasifica y suma los pedidos
@@ -419,6 +449,7 @@ function comprarPedido(){
 
 
 /* BOTON OPCIONES O CARRITO */
+var actualizaPedido=false;
 
 function cambiarACarrito()
 {
@@ -489,11 +520,11 @@ function cambiarACarrito()
                 <div class="col-12">
                 <button onclick="comprarPedido()" >Comprar</button>
                     </div>
-                  </div>
-                </div>
-
-    `
-    div.innerHTML = html;
+    
+        `
+        div.innerHTML = html;
+    
+    
 }
 
 function cambiarAOpciones()
@@ -535,7 +566,8 @@ function sacarDesplegable(button)
             document.getElementById("divDesplegable").style.display = "inline";
             // El resto de botones desabilitados mientras.
             document.getElementById("Opciones").disabled = true
-            cambiarACarrito();
+            actualizaPedido=true;
+            
             sacado = true;
         }
         else if(sacado == true)
@@ -544,6 +576,7 @@ function sacarDesplegable(button)
             document.getElementById("divDesplegable").style.display = "none";
             // El resto de botones se vuelven a habilitar.
             document.getElementById("Opciones").disabled = false;
+            actualizaPedido=false;
             sacado = false;
         }
     }
@@ -663,7 +696,7 @@ function mostrarHora()
 
     //Establece Pedido
     setPedido();
-
+    cambiarACarrito();
    
 }
 
@@ -688,6 +721,7 @@ function mostrarHoraInicio()
     
 /* Sensores */
 function  sensorProximidadApaga(){                      //Apaga las luces en caso de que no sienta a nadie
+    
     if(frigo.frigorificoPresencia == false && frigo.refrigeradorPuerta==false && frigo.congeladorPuerta==false ){
         frigo.frigorificoPantalla=0;
         frigo.refrigeradorLuz=false;
