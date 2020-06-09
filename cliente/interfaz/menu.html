@@ -21,7 +21,7 @@
 </head>
 
 <body>
-	<div class="container" id="tamPantalla">
+	<div class="container" id="tamPantalla" style="z-index: 0;">
         <!-- Aqui la parte superior de la pantalla donde se encuentran diferentes iconos-->
         <div class="row">
             <div class="col-4">
@@ -59,8 +59,8 @@
 
 
         <!-- OPCIONES DE LA NEVERA-->
-        <div class="row h-100">
-            <div class="col-12 my-auto">
+        <div class="row h-100" style="z-index: -4; position: relative;">
+            <div class="col-12 my-auto" style=" position: static;">
                 <!-- Opciones de la parte de arriba-->
                 <div class="card card-block w-40 mx-auto" id="refrigerador">
                     <div class="d-flex justify-content-start" style="padding: 10px;" > 
@@ -155,6 +155,48 @@
                     </div>
                 </div>
             </div>
+
+            <!-- DESPLEGABLE PARA EL CARRITO, OPCIONES Y NOTIFICACIONES -->
+            <div id="divDesplegable" class ="col-12 my-auto" style="z-index: 2; position: absolute; display: none;">
+                <div class="card card-block w-30 mx-auto" id="desplegable" >
+                    <div class="row" style="text-align: center; margin-bottom: 20px;">
+                        <h2><i class="fas fa-shopping-basket" style="margin-right: 10px;"></i>Lista de la compra</h2>
+                    </div>
+                    <div class="row h-100"style="justify-content: center;" >
+                        <ul class="list-group list-group-flush" style="width: 80%;">
+                            <li class="list-group-item">Cras justo odio 
+                                <button style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button> 
+                            </li>
+                            <li class="list-group-item">Dapibus ac facilisis in
+                                <button style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </li>
+                            <li class="list-group-item" >Morbi leo risus
+                                <button style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </li>
+                            <li class="list-group-item">Porta ac consectetur ac
+                                <button style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </li>
+                            <li class="list-group-item">Vestibulum at eros
+                                <button style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </li>
+                          </ul>
+
+                          <div class="col-12">
+                            <button>Comprar</button>
+                          </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- los iconos del fondo: botón de apagar y lo que se ocurra -->
@@ -178,15 +220,17 @@
                 </button>
             </div>
             <!-- Botón del carrito de la compra -->
-            <div class="col" style="text-align: center;">
-                <button class="iconoBotones">
-                    <i class="fas fa-shopping-basket iconos"></i>
+            <div class="col d-flex justify-content-center" style="text-align: center; position: relative;">
+                <div id="desplegableCarrito"class="tieneDesplegable" style="text-align: center; position: absolute;">
+                </div>
+                <button id="Carrito" onclick="sacarDesplegable(this);" class="iconoBotones" style="z-index: 2; position: static;"> 
+                    <i class="fas fa-shopping-basket iconos "></i>
                 </button>   
             </div>
             
             <!-- Botón de las estadísticas -->
             <div class="col" style="text-align: center;">
-                <button class="iconoBotones" onclick="toggleStats();">
+                <button class="iconoBotones"  onclick="toggleStats();">
                     <i class="fas fa-chart-line iconos"></i>
                 </button>   
             </div>
@@ -255,7 +299,7 @@
         }
     </script>
 
-    <!-- SCRIPT PARA EL CHART DEL CONGELADOR -->
+    <!-- SCRIPT PARA EL CHART DEL FRIGO -->
     <script>
         var canvasFrigo = document.getElementById("canvasFrigo");
         Chart.defaults.global.defaultFontFamily = "Lato";
@@ -339,6 +383,8 @@
             options: chartOptions
         });       
     </script>
+
+    <!-- SCRIPT PARA EL CHART DEL CONGELADOR -->
     <script>
         var canvasCong = document.getElementById("canvasCong");
         Chart.defaults.global.defaultFontFamily = "Lato";

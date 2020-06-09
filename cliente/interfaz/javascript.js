@@ -321,6 +321,28 @@ function irMenuInicio()
     }
 }
 
+var sacado = false;
+function sacarDesplegable(button)
+{
+
+    if(button.id == "Carrito")
+    {
+        var idDesplegable = "desplegable" + button.id;
+        if(sacado == false)
+        {
+            document.getElementById(idDesplegable).style.display = "inline";
+            document.getElementById("divDesplegable").style.display = "inline";
+            sacado = true;
+        }
+        else if(sacado == true)
+        {
+            document.getElementById(idDesplegable).style.display = "none";
+            document.getElementById("divDesplegable").style.display = "none";
+            sacado = false;
+        }
+    }
+}
+
 // para que se escondan los botones y se muestren los charts
 var mostrarStats = false;
 function toggleStats()

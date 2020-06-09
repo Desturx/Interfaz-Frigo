@@ -52,7 +52,7 @@ h2 {
 .iconoBotones:focus {
     outline: 2.5px;
     outline-style: dashed;
-    outline-color: rgba(38, 71, 218, 0.493);
+    outline-color: rgba(255, 255, 255, 0.705);
 }
 
 .iconoBotonesOn {
@@ -75,13 +75,15 @@ h2 {
 .iconoBotonesOn:focus {
     outline: 2.5px;
     outline-style: dashed;
-    outline-color: rgba(38, 71, 218, 0.493);
+    outline-color: rgba(255, 255, 255, 0.705);
+    /* outline-color: rgba(38, 71, 218, 0.493); */
 }
 
 .iconoBotonesOff:focus {
     outline: 2.5px;
     outline-style: dashed;
-    outline-color: rgba(38, 71, 218, 0.493);
+    outline-color: rgba(255, 255, 255, 0.705);
+    /* outline-color: rgba(38, 71, 218, 0.493); */
 }
 
 .botonesDerecha {
@@ -116,6 +118,30 @@ h2 {
     text-align: center; 
 }
 
+#desplegable {
+    height: 400px;
+    background-color: #1f3071;
+    top:236px;
+    bottom: 0px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+}
+
+.list-group-item {
+    background-color: #6291e9;
+
+}
+
+.tieneDesplegable {
+    /* background-color: #153062; */
+    background-color: #1f3071;
+    width: 70px;
+    height: 72px;
+    top: -17px;
+    z-index: 1;
+    display: none;
+}
 
 
 #settings {
@@ -147,6 +173,10 @@ h2 {
     .iconoBotones {
         font-size:10px;
     }
+    .tieneDesplegable {
+        width: 47px;
+        height: 55px;
+    }
 }
 
 
@@ -169,6 +199,7 @@ h2 {
     margin-bottom: 5em;
   }
   
+   
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -186,6 +217,7 @@ h2 {
     background: rgb(17, 16, 49);
     cursor: pointer;
   }
+
 
 .slidecontainer{
     margin-top: 1em;
