@@ -435,9 +435,12 @@ function cambiarACarrito()
                         if(pedidoGuardado["Leche"]>0){
                             html +=`<li class="list-group-item">`
                             html +=  "Leche: " + pedidoGuardado["Leche"];
-                            html +=` <button onclick="this.parentNode.remove();"
-                                     style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                     <span aria-hidden="true">&times;</span>
+                            html +=` 
+                                    <button onclick="">+</button>
+                                    <button onclick="">-</button>
+                                    <button onclick="this.parentNode.remove();"
+                                    style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
                                     </button> 
                                     </li>`
                         }
@@ -445,9 +448,12 @@ function cambiarACarrito()
                         if(pedidoGuardado["Huevo"]>0){
                             html +=`<li class="list-group-item">`
                             html +=  "Huevo: " + pedidoGuardado["Huevo"];
-                            html +=` <button onclick="this.parentNode.remove();"
-                                     style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                     <span aria-hidden="true">&times;</span>
+                            html +=`
+                                    <button onclick="">+</button>
+                                    <button onclick="">-</button>
+                                    <button onclick="this.parentNode.remove();"
+                                    style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
                                     </button> 
                                     </li>`
                         }
@@ -455,9 +461,12 @@ function cambiarACarrito()
                         if(pedidoGuardado["Carne"]>0){
                             html +=`<li class="list-group-item">`
                             html +=  "Carne: " + pedidoGuardado["Carne"];
-                            html +=` <button onclick="this.parentNode.remove();"
-                                     style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                     <span aria-hidden="true">&times;</span>
+                            html +=`
+                                    <button onclick="">+</button>   
+                                    <button onclick="">-</button> 
+                                    <button onclick="this.parentNode.remove();"
+                                    style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
                                     </button> 
                                     </li>`
                         }
@@ -465,9 +474,12 @@ function cambiarACarrito()
                         if(pedidoGuardado["Pescado"]>0){
                             html +=`<li class="list-group-item">`
                             html +=  "Pescado: " + pedidoGuardado["Pescado"];
-                            html +=` <button onclick="this.parentNode.remove();"
-                                     style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                     <span aria-hidden="true">&times;</span>
+                            html +=` 
+                                    <button onclick="">+</button>
+                                    <button onclick="">-</button> 
+                                    <button onclick="this.parentNode.remove();"
+                                    style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
                                     </button> 
                                     </li>`
                         }
