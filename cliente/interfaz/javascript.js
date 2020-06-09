@@ -124,6 +124,8 @@ window.content.localStorage[modoEcoF] = 0;
 window.content.localStorage[modoEcoC] = 0;
 */
 
+
+function addData(){}
 /* Refrigerador  */
 function EcoF()
 {
@@ -321,6 +323,83 @@ function irMenuInicio()
     }
 }
 
+function cambiarACarrito()
+{
+    var div = document.getElementById("divDesplegable");
+
+    var html = `
+    <div class="card card-block w-30 mx-auto" id="desplegable" >
+                    <div class="row" style="text-align: center; margin-bottom: 20px;">
+                        <h2><i class="fas fa-shopping-basket" style="margin-right: 10px;"></i>Lista de la compra</h2>
+                    </div>
+                    <div class="row h-100"style="justify-content: center;" >
+                        <ul id="listaCompra" class="list-group list-group-flush" style="width: 80%;">
+                            <li class="list-group-item">
+                                Leche
+                                <button onclick="this.parentNode.remove();"
+                                 style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button> 
+                            </li>
+                            <li class="list-group-item">
+                                Huevos
+                                <button onclick="this.parentNode.remove();" 
+                                style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </li>
+                            <li class="list-group-item" >
+                                Carne
+                                <button onclick="this.parentNode.remove();" 
+                                style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </li>
+                            <li class="list-group-item">
+                                Pescado
+                                <button onclick="this.parentNode.remove();" 
+                                style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </li>
+                          </ul>
+
+                          <div class="col-12">
+                            <button>Comprar</button>
+                          </div>
+                    </div>
+                </div>
+
+    `
+    div.innerHTML = html;
+}
+
+function cambiarAOpciones()
+{
+    var div = document.getElementById("divDesplegable");
+    var html = `
+    <div class="card card-block w-30 mx-auto" id="desplegable" >
+    <div class="row" style="text-align: center; margin-bottom: 20px;">
+        <h2><i class="fas fa-cog" style="margin-right: 10px;"></i>Opciones</h2>
+    </div>
+    <div class="row h-100"style="justify-content: center;" >
+        <ul class="list-group list-group-flush" style="width: 80%;">
+            <li class="list-group-item">
+            Modo oscuro
+            <input type="checkbox">
+            </li>
+            <li class="list-group-item">
+                otra opción
+            </li>
+          <div class="col-12">
+            <button>Guardar</button>
+          </div>
+    </div>
+    `  
+    div.innerHTML = html;
+}
+
+
 var sacado = false;
 function sacarDesplegable(button)
 {
@@ -332,16 +411,45 @@ function sacarDesplegable(button)
         {
             document.getElementById(idDesplegable).style.display = "inline";
             document.getElementById("divDesplegable").style.display = "inline";
+            // El resto de botones desabilitados mientras.
+            document.getElementById("Opciones").disabled = true
+            cambiarACarrito();
             sacado = true;
         }
         else if(sacado == true)
         {
             document.getElementById(idDesplegable).style.display = "none";
             document.getElementById("divDesplegable").style.display = "none";
+            // El resto de botones se vuelven a habilitar.
+            document.getElementById("Opciones").disabled = false;
+            sacado = false;
+        }
+    }
+    if(button.id == "Opciones")
+    {
+        var idDesplegable = "desplegable" + button.id;
+        if(sacado == false)
+        {
+            document.getElementById(idDesplegable).style.display = "inline";
+            document.getElementById("divDesplegable").style.display = "inline";
+            // El resto de botones desabilitados mientras.
+            cambiarAOpciones();
+            document.getElementById("Carrito").disabled = true
+            sacado = true;
+        }
+        else if(sacado == true)
+        {
+            document.getElementById(idDesplegable).style.display = "none";
+            document.getElementById("divDesplegable").style.display = "none";
+            // El resto de botones se vuelven a habilitar.
+            document.getElementById("Carrito").disabled = false;
             sacado = false;
         }
     }
 }
+
+
+
 
 // para que se escondan los botones y se muestren los charts
 var mostrarStats = false;
@@ -429,7 +537,7 @@ function mostrarHora()
     alertaPuerta();
     alertaTemperatura();
     alertaConsumo();
-
+    comprobarNotificaciones();
 
     //Establece Pedido
     setPedido();
@@ -541,6 +649,24 @@ var mostrarPuerta=false;
 var mostrarTempF=false;
 var mostrarTempC=false;
 var mostrarCon=false;
+
+var notificaciones_activas = 0;
+function comprobarNotificaciones()
+{
+    var suma = mostrarPuerta + mostrarTempF + mostrarTempC + mostrarCon;
+    if(suma > 0)
+    {   
+        document.getElementById("cantNotificaciones").style.visibility = "visible"; 
+        document.getElementById("cantNotificaciones").innerHTML = suma;
+    }
+    else
+    {
+        document.getElementById("cantNotificaciones").style.visibility = "hidden"; 
+
+    }
+
+}
+
 
 function mostrarAlertas(){
     if(mostrarPuerta==true){
@@ -726,24 +852,21 @@ pedidoGuardado["Pescado"]=0;
 
 //Aqui clasifica y suma los pedidos
 function realizaPedido(){
-
+    
     if(frigo.frigorificoCodigo== "11111111"){
         pedidoGuardado["Leche"] = pedidoGuardado["Leche"] +1;
-         
-        
-        
     }
+
     if(frigo.frigorificoCodigo== "22222222"){
         pedidoGuardado["Huevo"] = pedidoGuardado["Huevo"] +1;
     }
+
     if(frigo.frigorificoCodigo== "33333333"){
         pedidoGuardado["Carne"]=pedidoGuardado["Carne"]+1;
-        
     }
     if(frigo.frigorificoCodigo== "44444444"){
         pedidoGuardado["Pescado"]=pedidoGuardado["Pescado"]+1
     }
-
     
 }
 
@@ -754,6 +877,4 @@ function setPedido(){
         guardavar=frigo.frigorificoCodigo;
         realizaPedido();
     }
-   
-    
 }
