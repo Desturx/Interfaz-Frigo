@@ -541,11 +541,12 @@ function alertaPuerta(){
     
         if(frigo.refrigeradorPuerta==true && TPuertafri>20 || frigo.congeladorPuerta==true && TPuertacon>20){
             frigo.frigorificoAlarma=true;
-            console.log("AA");
+            
             mostrarPuerta=true;
         }
         else{
             frigo.frigorificoAlarma=false;
+            mostrarPuerta=false;
         }
 }
 
@@ -618,7 +619,7 @@ function alertaConsumo(){
   
 
         aConsum=true;
-        //console.log("Que explota!!");
+        console.log("Que explota!!");
     }      
 
     if(cadaMin>59){
@@ -635,32 +636,32 @@ function alertaConsumo(){
 var guardavar=-1;           //Con esta comprueba si ha cambiado el codigo de pedido para añadir uno nuevo
 var pedidoGuardado=[];      //Nombre de las variables elegidas
 //Cantidades de los productos (leche, huevo,carne,pescado)
-var cantLeche=0;
-var cantHuevo=0;
-var cantCarne=0;
-var cantPescado=0;
+pedidoGuardado["Leche"]=0;
+pedidoGuardado["Huevo"]=0;
+pedidoGuardado["Carne"]=0;
+pedidoGuardado["Pescado"]=0;
+
+
 
 
 //Aqui clasifica y suma los pedidos
 function realizaPedido(){
     
     if(frigo.frigorificoCodigo== "11111111"){
-        pedidoGuardado.push("Leche");  
-        cantLeche= cantLeche+1;
+        pedidoGuardado["Leche"] = pedidoGuardado["Leche"] +1;
+         
+        
         
     }
     if(frigo.frigorificoCodigo== "22222222"){
-        pedidoGuardado.push("Huevo");  
-        cantHuevo= cantHuevo+1;
+        pedidoGuardado["Huevo"] = pedidoGuardado["Huevo"] +1;
     }
     if(frigo.frigorificoCodigo== "33333333"){
-        pedidoGuardado.push("Carne");
-        cantCarne= cantCarne+1;
+        pedidoGuardado["Carne"]=pedidoGuardado["Carne"]+1;
         
     }
     if(frigo.frigorificoCodigo== "44444444"){
-        pedidoGuardado.push("Pescado"); 
-        cantPescado= cantPescado+1; 
+        pedidoGuardado["Pescado"]=pedidoGuardado["Pescado"]+1
     }
 
     
