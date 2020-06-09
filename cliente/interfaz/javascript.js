@@ -323,6 +323,103 @@ function irMenuInicio()
     }
 }
 
+//PEDIDOS  
+var guardavar=-1;           //Con esta comprueba si ha cambiado el codigo de pedido para añadir uno nuevo
+var pedidoGuardado=[];      //Nombre de las variables elegidas
+//Cantidades de los productos (leche, huevo,carne,pescado)
+pedidoGuardado["Leche"]=0;
+pedidoGuardado["Huevo"]=0;
+pedidoGuardado["Carne"]=0;
+pedidoGuardado["Pescado"]=0;
+
+
+
+//Aqui clasifica y suma los pedidos
+function realizaPedido(){
+    
+    if(frigo.frigorificoCodigo== "11111111"){
+        pedidoGuardado["Leche"] = pedidoGuardado["Leche"] +1;
+    }
+
+    if(frigo.frigorificoCodigo== "22222222"){
+        pedidoGuardado["Huevo"] = pedidoGuardado["Huevo"] +1;
+    }
+
+    if(frigo.frigorificoCodigo== "33333333"){
+        pedidoGuardado["Carne"]=pedidoGuardado["Carne"]+1;
+    }
+    if(frigo.frigorificoCodigo== "44444444"){
+        pedidoGuardado["Pescado"]=pedidoGuardado["Pescado"]+1
+    }
+    
+}
+
+//Primero llama aquí para comprobar que se ha elegido un producto nuevo
+function setPedido(){         
+    let actual = frigo.frigorificoCodigo;
+    if(guardavar!=actual){
+        guardavar=frigo.frigorificoCodigo;
+        realizaPedido();
+    }
+}
+
+function comprarPedido(){
+    
+    if(pedidoGuardado["Leche"]>0 || pedidoGuardado["Huevo"]>0 || pedidoGuardado["Carne"]>0 || pedidoGuardado["Pescado"]>0 ){
+        
+       
+        Command: toastr["success"]("Pedido Realizado")
+
+        toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": false,
+          "positionClass": "toast-top-left",
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+
+        pedidoGuardado["Leche"]=0;
+        pedidoGuardado["Huevo"]=0;
+        pedidoGuardado["Carne"]=0;
+        pedidoGuardado["Pescado"]=0;
+
+    }
+    else{
+        Command: toastr["error"]("Fallo, no hay pedidos seleccionados")
+
+        toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": false,
+          "positionClass": "toast-top-left",
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+    }
+}
+
+
+/* BOTON OPCIONES O CARRITO */
+
 function cambiarACarrito()
 {
     var div = document.getElementById("divDesplegable");
@@ -333,41 +430,54 @@ function cambiarACarrito()
                         <h2><i class="fas fa-shopping-basket" style="margin-right: 10px;"></i>Lista de la compra</h2>
                     </div>
                     <div class="row h-100"style="justify-content: center;" >
-                        <ul id="listaCompra" class="list-group list-group-flush" style="width: 80%;">
-                            <li class="list-group-item">
-                                Leche
-                                <button onclick="this.parentNode.remove();"
-                                 style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button> 
-                            </li>
-                            <li class="list-group-item">
-                                Huevos
-                                <button onclick="this.parentNode.remove();" 
-                                style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                            </li>
-                            <li class="list-group-item" >
-                                Carne
-                                <button onclick="this.parentNode.remove();" 
-                                style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                            </li>
-                            <li class="list-group-item">
-                                Pescado
-                                <button onclick="this.parentNode.remove();" 
-                                style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                            </li>
-                          </ul>
+                        <ul id="listaCompra" class="list-group list-group-flush" style="width: 80%;">`
 
-                          <div class="col-12">
-                            <button>Comprar</button>
-                          </div>
+                        if(pedidoGuardado["Leche"]>0){
+                            html +=`<li class="list-group-item">`
+                            html +=  "Leche: " + pedidoGuardado["Leche"];
+                            html +=` <button onclick="this.parentNode.remove();"
+                                     style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                     <span aria-hidden="true">&times;</span>
+                                    </button> 
+                                    </li>`
+                        }
+
+                        if(pedidoGuardado["Huevo"]>0){
+                            html +=`<li class="list-group-item">`
+                            html +=  "Huevo: " + pedidoGuardado["Huevo"];
+                            html +=` <button onclick="this.parentNode.remove();"
+                                     style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                     <span aria-hidden="true">&times;</span>
+                                    </button> 
+                                    </li>`
+                        }
+
+                        if(pedidoGuardado["Carne"]>0){
+                            html +=`<li class="list-group-item">`
+                            html +=  "Carne: " + pedidoGuardado["Carne"];
+                            html +=` <button onclick="this.parentNode.remove();"
+                                     style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                     <span aria-hidden="true">&times;</span>
+                                    </button> 
+                                    </li>`
+                        }
+
+                        if(pedidoGuardado["Pescado"]>0){
+                            html +=`<li class="list-group-item">`
+                            html +=  "Pescado: " + pedidoGuardado["Pescado"];
+                            html +=` <button onclick="this.parentNode.remove();"
+                                     style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                                     <span aria-hidden="true">&times;</span>
+                                    </button> 
+                                    </li>`
+                        }
+
+                            
+    html += `  </ul>
+                <div class="col-12">
+                <button onclick="comprarPedido()" >Comprar</button>
                     </div>
+                  </div>
                 </div>
 
     `
@@ -678,12 +788,12 @@ function comprobarNotificaciones()
         document.getElementById("cantNotificaciones").style.visibility = "visible"; 
         document.getElementById("cantNotificaciones").innerHTML = suma;
         // CAMBIARLE EL COLOR AL ICONO DE LA ALERTA
-        //document.getElementById("iconoAlertas").style.color = "red";
+        document.getElementById("iconoAlertas").style.color = "#FA7575";
     }
     else
     {
         document.getElementById("cantNotificaciones").style.visibility = "hidden"; 
-
+        document.getElementById("iconoAlertas").style.color = "white";
     }
 
 }
@@ -860,42 +970,3 @@ function alertaConsumo(){
     }
 }
 
-//PEDIDOS  
-var guardavar=-1;           //Con esta comprueba si ha cambiado el codigo de pedido para añadir uno nuevo
-var pedidoGuardado=[];      //Nombre de las variables elegidas
-//Cantidades de los productos (leche, huevo,carne,pescado)
-pedidoGuardado["Leche"]=0;
-pedidoGuardado["Huevo"]=0;
-pedidoGuardado["Carne"]=0;
-pedidoGuardado["Pescado"]=0;
-
-
-
-//Aqui clasifica y suma los pedidos
-function realizaPedido(){
-    
-    if(frigo.frigorificoCodigo== "11111111"){
-        pedidoGuardado["Leche"] = pedidoGuardado["Leche"] +1;
-    }
-
-    if(frigo.frigorificoCodigo== "22222222"){
-        pedidoGuardado["Huevo"] = pedidoGuardado["Huevo"] +1;
-    }
-
-    if(frigo.frigorificoCodigo== "33333333"){
-        pedidoGuardado["Carne"]=pedidoGuardado["Carne"]+1;
-    }
-    if(frigo.frigorificoCodigo== "44444444"){
-        pedidoGuardado["Pescado"]=pedidoGuardado["Pescado"]+1
-    }
-    
-}
-
-//Primero llama aquí para comprobar que se ha elegido un producto nuevo
-function setPedido(){         
-    let actual = frigo.frigorificoCodigo;
-    if(guardavar!=actual){
-        guardavar=frigo.frigorificoCodigo;
-        realizaPedido();
-    }
-}
