@@ -675,8 +675,12 @@ function mostrarHora()
     
 
     //Proximidad con la puerta, apaga y enciende luces
-    sensorProximidadApaga();
-    sensorProximidadEnciende();
+    if(ajustesPresencia==false){
+        sensorProximidadApaga();
+        sensorProximidadEnciende();
+    }
+    
+
 
     //Alertas
     tiempoPuerta(hora);
@@ -712,7 +716,7 @@ function mostrarHoraInicio()
     
 /* Sensores */
 function  sensorProximidadApaga(){                      //Apaga las luces en caso de que no sienta a nadie
-    
+
     if(frigo.frigorificoPresencia == false && frigo.refrigeradorPuerta==false && frigo.congeladorPuerta==false ){
         frigo.frigorificoPantalla=0;
         frigo.refrigeradorLuz=false;
