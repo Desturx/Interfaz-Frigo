@@ -6,6 +6,7 @@ var modoEcoF=false;
 var modoEcoC=false;
 
 var ajustesPresencia= false;
+var mostrarPedidos=false;
 
 //#region FUNCIONES AL CONECTARSE
 // Función para cuando se conecta la interfaz con el frigo
@@ -363,6 +364,20 @@ function restaPedido(number){
     }
 }
 
+function quitaPedido(number){
+    if(number==1){
+        pedidoGuardado["Leche"]=0; 
+    }
+    if(number==2){
+        pedidoGuardado["Huevo"]=0;
+    }
+    if(number==3){
+        pedidoGuardado["Carne"]=0;
+    }
+    if(number==4){
+        pedidoGuardado["Pescado"]=0;
+    }
+}
 
 //Aqui clasifica y suma los pedidos
 function realizaPedido(){
@@ -467,9 +482,9 @@ function cambiarACarrito()
                             html +=`<li class="list-group-item">`
                             html +=  "Leche: " + pedidoGuardado["Leche"];
                             html +=` 
-                                    <button onclick="">+</button>
-                                    <button onclick="">-</button>
-                                    <button onclick="this.parentNode.remove();"
+                                    <button onclick="sumaPedido(1);">+</button>
+                                    <button onclick="restaPedido(1);">-</button>
+                                    <button onclick="this.parentNode.remove(); quitaPedido(1);"
                                     style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button> 
@@ -480,9 +495,9 @@ function cambiarACarrito()
                             html +=`<li class="list-group-item">`
                             html +=  "Huevo: " + pedidoGuardado["Huevo"];
                             html +=`
-                                    <button onclick="">+</button>
-                                    <button onclick="">-</button>
-                                    <button onclick="this.parentNode.remove();"
+                                    <button onclick="sumaPedido(2);">+</button>
+                                    <button onclick="restaPedido(2);">-</button>
+                                    <button onclick="this.parentNode.remove(); quitaPedido(2);"
                                     style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button> 
@@ -493,9 +508,9 @@ function cambiarACarrito()
                             html +=`<li class="list-group-item">`
                             html +=  "Carne: " + pedidoGuardado["Carne"];
                             html +=`
-                                    <button onclick="">+</button>   
-                                    <button onclick="">-</button> 
-                                    <button onclick="this.parentNode.remove();"
+                                    <button onclick="sumaPedido(3);">+</button>   
+                                    <button onclick="restaPedido(3);">-</button> 
+                                    <button onclick="this.parentNode.remove();  quitaPedido(3);"
                                     style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button> 
@@ -506,9 +521,9 @@ function cambiarACarrito()
                             html +=`<li class="list-group-item">`
                             html +=  "Pescado: " + pedidoGuardado["Pescado"];
                             html +=` 
-                                    <button onclick="">+</button>
-                                    <button onclick="">-</button> 
-                                    <button onclick="this.parentNode.remove();"
+                                    <button onclick="sumaPedido(4);">+</button>
+                                    <button onclick="restaPedido(3);">-</button> 
+                                    <button onclick="this.parentNode.remove();  quitaPedido(4);"
                                     style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button> 
@@ -542,7 +557,10 @@ function cambiarAOpciones()
             <input type="checkbox">
             </li>
             <li class="list-group-item">
-                otra opción
+            <button type="button" class="btn btn-primary" onclick="activarSensor();">Apagar/Encender sensor </button>
+            </li>
+            <li class="list-group-item">
+            <button type="button" class="btn btn-primary">   otra opción </button>
             </li>
           <div class="col-12">
             <button>Guardar</button>
@@ -559,6 +577,7 @@ function sacarDesplegable(button)
 
     if(button.id == "Carrito")
     {
+
         var idDesplegable = "desplegable" + button.id;
         if(sacado == false)
         {
@@ -567,6 +586,7 @@ function sacarDesplegable(button)
             // El resto de botones desabilitados mientras.
             document.getElementById("Opciones").disabled = true
             actualizaPedido=true;
+            mostrarPedidos=true;
             
             sacado = true;
         }
@@ -578,6 +598,7 @@ function sacarDesplegable(button)
             document.getElementById("Opciones").disabled = false;
             actualizaPedido=false;
             sacado = false;
+            mostrarPedidos=false;
         }
     }
     if(button.id == "Opciones")
@@ -700,7 +721,10 @@ function mostrarHora()
 
     //Establece Pedido
     setPedido();
-    cambiarACarrito();
+    if(mostrarPedidos==true){
+        cambiarACarrito();
+    }
+    
    
 }
 
@@ -724,6 +748,15 @@ function mostrarHoraInicio()
 }
     
 /* Sensores */
+function activarSensor(){
+    if(ajustesPresencia==false){
+        ajustesPresencia=true;
+    }
+    else{
+        ajustesPresencia=false;
+    }
+}
+
 function  sensorProximidadApaga(){                      //Apaga las luces en caso de que no sienta a nadie
 
     if(frigo.frigorificoPresencia == false && frigo.refrigeradorPuerta==false && frigo.congeladorPuerta==false ){
