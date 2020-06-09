@@ -13,8 +13,8 @@ body {
 {
     position: relative;
     top: 5em;
-    /* background-color: #6291e9; */
     background-color: rgba(33, 48, 116, 0.781);
+    /* background-color: #2e2e2e; */
     padding: 12px;
 }
 
@@ -97,8 +97,8 @@ h2 {
     height: 300px;
     width: 95%;
     margin-top: 20px;
-    /* background-color: rgba(33, 48, 116, 0.781); */
     background-color: #6291e9;
+    /* background-color: #575757; */
     border: none;
     border-radius: 10px;  
     text-align: center; 
@@ -109,13 +109,14 @@ h2 {
     width: 95%;
     margin-top: 13px;
     margin-bottom: 14px;
-    /* background-color: rgba(233, 233, 233, 0.856); */
     background-color: #6291e9;
+    /* background-color: #575757; */
     border: none;
     border-radius: 10px;
     text-align: center; 
-
 }
+
+
 
 #settings {
     margin-top: 13px ;

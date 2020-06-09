@@ -339,7 +339,6 @@ function toggleStats()
     }
 }
 
-
 // Cuando se vuelve al reloj
 function volverAlReloj() 
 {
