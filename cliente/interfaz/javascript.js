@@ -894,14 +894,21 @@ function alertaPuerta(){
 
 function alertaTemperatura(){
     
-    if(aTemp==false){
+    
         if(frigo.refrigeradorTemperatura>10){  
-            aTemp=true; 
+            mostrarTempF=true; 
         }
+        else{
+            mostrarTempF=false; 
+        }
+
         if(frigo.congeladorTemperatura>2){
-            aTemp=true;
+            mostrarTempC=true;
         }
-    }
+        else{
+            mostrarTempC=false;
+        }
+    
 
 }
 
