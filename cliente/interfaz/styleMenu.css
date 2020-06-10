@@ -290,7 +290,27 @@ h2 {
     .spanListaCompra {
         font-size:15px;
     }
+    
+    .iconos {
+        font-size:23px;
+    }
+
+    .iconoBotonesOn {
+        width: 40px;
+        height: 40px;
+        padding-top: 5px;
+        padding-bottom: 3px;
+
+    }
+    .iconoBotonesOff {
+        padding-top: 5px;
+        width: 40px;
+        height: 40px;
+
+    }
 }
+
+
 
 @media(max-width: 374px) {
     #listaCompra {
@@ -298,6 +318,8 @@ h2 {
         height: 150px;
     }
 }
+
+
 
 @media(max-width: 362px)
 {
