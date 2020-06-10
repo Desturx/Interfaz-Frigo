@@ -602,7 +602,7 @@ function cambiarACarrito()
                         <ul id="listaCompra" class="list-group list-group-flush">
                         </ul>
                     <div class="col-12">
-                        <button onclick="comprarPedido()" >Comprar</button>
+                        <button class="btnSumaYResta btnSumaYResta-2 btnSumaYResta-2h" onclick="comprarPedido()" >Comprar</button>
                 </div>
                 `
     

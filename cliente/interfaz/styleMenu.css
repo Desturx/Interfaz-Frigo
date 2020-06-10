@@ -156,11 +156,10 @@ h2 {
 .btnSumaYResta {
     border: none;
     font-family: inherit;
-    font-size: 25px;
     color: inherit;
     background: none;
     cursor: pointer;
-    padding: 25px 80px;
+    
     display: inline-block;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -185,6 +184,8 @@ h2 {
 }
 
 .btnSumaYResta-2i {
+    padding: 25px 80px;
+    font-size: 25px;
 	border-radius: 50%;
 	width: 43px;
 	height: 43px;
@@ -216,6 +217,23 @@ h2 {
 }
 
 .btnSumaYResta-2i:active {
+	box-shadow: 0 0 #3e3cab;
+	top: 6px;
+}
+
+.btnSumaYResta-2h {
+    border-radius: 20px;
+    width: 140px;
+    height: 45px;
+    font-size: 12px;
+}
+
+.btnSumaYResta-2h:hover {
+	box-shadow: 0 4px #3e3cab;
+	top: 2px;
+}
+
+.btnSumaYResta-2h:active {
 	box-shadow: 0 0 #3e3cab;
 	top: 6px;
 }
