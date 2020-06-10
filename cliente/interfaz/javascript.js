@@ -296,9 +296,23 @@ function ControlTempC()
 }
 
 //#endregion
-
+var atenuado = false;
 function atenuar()
 {
+    var body = document.getElementsByTagName("body")[0];
+    if(atenuado == false)
+    {
+        body.style.filter = "brightness(60%)";
+        document.getElementById("atenuarPantalla").innerHTML = '<i class="fas fa-sun iconos"></i>';
+        atenuado = true;
+    }
+    else if(atenuado == true)
+    {
+        body.style.filter = "brightness(100%)";
+        document.getElementById("atenuarPantalla").innerHTML = '<i class="fas fa-moon iconos"></i>';
+        atenuado = false;
+    }
+    /*
     var body = document.getElementsByTagName("body")[0];
     if(frigo.frigorificoPantalla == 2) // si la pantalla está encendida, se atenua
     {
@@ -311,7 +325,8 @@ function atenuar()
         frigo.frigorificoPantalla = 2;
         body.style.filter = "brightness(100%)";
         document.getElementById("atenuarPantalla").innerHTML = '<i class="fas fa-moon iconos"></i>';
-    }
+    }*/
+
 }
 
 function irMenuInicio() 
