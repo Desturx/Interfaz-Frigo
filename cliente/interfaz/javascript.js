@@ -627,9 +627,8 @@ function cambiarACarrito()
                         </ul>
                     <div class="col-12">
                         <button class="btnSumaYResta btnSumaYResta-2 btnSumaYResta-2h" onclick="comprarPedido()" >Comprar</button>
-                </div>
+                    </div>
                 `
-    
         div.innerHTML = html;
         
 }
@@ -661,7 +660,6 @@ function cambiarAOpciones()
     `  
     div.innerHTML = html;
 }
-
 
 var sacado = false;
 function sacarDesplegable(button)
@@ -714,6 +712,7 @@ function toggleStats()
 {
     if(!mostrarStats) 
     {
+        document.getElementById("cambiarTyE").setAttribute("class","fas fa-thermometer-half iconos");
         mostrarStats = true;
         document.getElementById("seccionCong").style.display = "none";
         document.getElementById("seccionFrigo").style.display = "none";
@@ -722,6 +721,7 @@ function toggleStats()
     }
     else if(mostrarStats)
     {
+        document.getElementById("cambiarTyE").setAttribute("class","fas fa-chart-line iconos");
         mostrarStats = false;
         document.getElementById("seccionCong").style.display = "block";
         document.getElementById("seccionFrigo").style.display = "block";
