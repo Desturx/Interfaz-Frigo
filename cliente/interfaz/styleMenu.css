@@ -118,6 +118,9 @@ h2 {
     text-align: center; 
 }
 
+#divDesplegable {
+    height: 100%;
+}
 #desplegable {
     height: 400px;
     background-color: #1f3071;
@@ -126,6 +129,12 @@ h2 {
     border-radius: 10px;
     text-align: center;
     padding: 20px;
+}
+
+#listaCompra {
+    width: 80%;
+    height: 250px;
+    overflow-y: auto;
 }
 
 .list-group-item {
@@ -143,6 +152,79 @@ h2 {
     display: none;
 }
 
+/*#region BotonSumayResta*/
+.btnSumaYResta {
+    border: none;
+    font-family: inherit;
+    font-size: 25px;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 25px 80px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: 0;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.btnSumaYResta:focus {
+    outline: 0 !important;
+}
+
+.btnSumaYResta-2 {
+	background: #504ecb;
+	color: #fff;
+	box-shadow: 0 6px #3e3cab;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+}
+
+.btnSumaYResta-2i {
+	border-radius: 50%;
+	width: 43px;
+	height: 43px;
+	padding: 0;
+}
+
+.btnSumaYResta:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btnSumaYResta::before {
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+}
+
+.btnSumaYResta-2i:hover {
+	box-shadow: 0 4px #3e3cab;
+	top: 2px;
+}
+
+.btnSumaYResta-2i:active {
+	box-shadow: 0 0 #3e3cab;
+	top: 6px;
+}
+
+/*#endregion BotonSumayResta*/
+
+.spanListaCompra {
+    font-size:25px;
+}
 
 #settings {
     margin-top: 13px ;
@@ -170,12 +252,39 @@ h2 {
     #horaReloj {
         font-size: 2em;
     }
+
     .iconoBotones {
         font-size:10px;
     }
     .tieneDesplegable {
         width: 47px;
         height: 55px;
+    }
+    
+    .btnSumaYResta {
+        font-size: 15px;
+
+    }   
+    .btnSumaYResta-2i {
+        width: 25px;
+        height: 25px;
+    }
+    .spanListaCompra {
+        font-size:15px;
+    }
+}
+
+@media(max-width: 374px) {
+    #listaCompra {
+        width: 90%;
+        height: 150px;
+    }
+}
+
+@media(max-width: 362px)
+{
+    #desplegable > div > h2 {
+        font-size: 25px;
     }
 }
 

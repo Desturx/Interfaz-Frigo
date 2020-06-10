@@ -464,82 +464,149 @@ function comprarPedido(){
 
 
 /* BOTON OPCIONES O CARRITO */
+
+
+
 var actualizaPedido=false;
+
+function colocarPedidos()
+{
+    var lista = document.getElementById("listaCompra");
+
+    if(pedidoGuardado["Leche"]>0) {
+
+        var li = document.createElement("li");
+        li.setAttribute("class", "list-group-item d-flex flex-row");
+        li.setAttribute("id", "listaLeche");
+
+
+        var html = '<span class="p-2 spanListaCompra ">Leche: ' + pedidoGuardado["Leche"] + "</span>";
+        html +=`<div class="ml-auto p-2 d-flex flex-row">
+                    <button style="margin-right: 10px;" class="btnSumaYResta btnSumaYResta-2 btnSumaYResta-2i" onclick="sumaPedido(1);">+</button>
+                    <button style="margin-right: 10px;" class="btnSumaYResta btnSumaYResta-2 btnSumaYResta-2i" onclick="restaPedido(1);">-</button>
+                    <div>
+                        <button onclick="this.parentNode.parentNode.parentNode.remove(); quitaPedido(1);"
+                        style="font-size:25px;margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> 
+                    </div>
+                </div>`
+
+        if(document.body.contains(document.getElementById("listaLeche")))
+        {
+            document.getElementById("listaLeche").innerHTML = html;
+        }
+        else 
+        {
+            li.innerHTML = html;
+            lista.appendChild(li);
+        }
+    }
+
+    if(pedidoGuardado["Huevo"]>0) {
+
+        var li = document.createElement("li");
+        li.setAttribute("class", "list-group-item d-flex flex-row");
+        li.setAttribute("id", "listaHuevo");
+
+        var html = '<span class="p-2 spanListaCompra ">Huevo: ' + pedidoGuardado["Huevo"] + "</span>";
+        html +=`<div class="ml-auto p-2 d-flex flex-row">
+                    <button style="margin-right: 10px;" class="btnSumaYResta btnSumaYResta-2 btnSumaYResta-2i" onclick="sumaPedido(2);">+</button>
+                    <button style="margin-right: 10px;" class="btnSumaYResta btnSumaYResta-2 btnSumaYResta-2i" onclick="restaPedido(2);">-</button>
+                    <div>
+                        <button onclick="this.parentNode.parentNode.parentNode.remove(); quitaPedido(2);"
+                        style="font-size:25px;margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> 
+                    </div>
+                </div>
+                `
+        if(document.body.contains(document.getElementById("listaHuevo")))
+        {
+            document.getElementById("listaHuevo").innerHTML = html;
+        }
+        else 
+        {
+            li.innerHTML = html;
+            lista.appendChild(li);
+        }
+    }
+
+    if(pedidoGuardado["Carne"]>0) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "list-group-item d-flex flex-row");
+        li.setAttribute("id", "listaCarne");
+        
+        var html = '<span class="p-2 spanListaCompra ">Carne: ' + pedidoGuardado["Carne"] + "</span>";
+        html +=`<div class="ml-auto p-2 d-flex flex-row">
+                    <button style="margin-right: 10px;" class="btnSumaYResta btnSumaYResta-2 btnSumaYResta-2i" onclick="sumaPedido(3);">+</button>
+                    <button style="margin-right: 10px;" class="btnSumaYResta btnSumaYResta-2 btnSumaYResta-2i" onclick="restaPedido(3);">-</button>
+                    <div>
+                        <button onclick="this.parentNode.parentNode.parentNode.remove(); quitaPedido(3);"
+                        style="font-size:25px;margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> 
+                    </div>
+                </div>
+                `
+
+        if(document.body.contains(document.getElementById("listaCarne")))
+        {
+            document.getElementById("listaCarne").innerHTML = html;
+        }
+        else 
+        {
+            li.innerHTML = html;
+            lista.appendChild(li);
+        }
+    }
+
+    if(pedidoGuardado["Pescado"]>0){
+        var li = document.createElement("li");
+        li.setAttribute("class", "list-group-item d-flex flex-row");
+        li.setAttribute("id", "listaPescado");
+
+        var html = '<span class="p-2 spanListaCompra ">Pescado: ' + pedidoGuardado["Pescado"] + "</span>";
+        html +=`<div class="ml-auto p-2 d-flex flex-row">
+                    <button style="margin-right: 10px;" class="btnSumaYResta btnSumaYResta-2 btnSumaYResta-2i" onclick="sumaPedido(4);">+</button>
+                    <button style="margin-right: 10px;" class="btnSumaYResta btnSumaYResta-2 btnSumaYResta-2i" onclick="restaPedido(4);">-</button>
+                    <div>
+                        <button onclick="this.parentNode.parentNode.parentNode.remove(); quitaPedido(4);"
+                        style="font-size:25px;margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> 
+                    </div>
+                </div>
+                `
+        if(document.body.contains(document.getElementById("listaPescado")))
+        {
+            document.getElementById("listaPescado").innerHTML = html;
+        }
+        else 
+        {
+            li.innerHTML = html;
+            lista.appendChild(li);
+        }
+    }
+}
 
 function cambiarACarrito()
 {
     var div = document.getElementById("divDesplegable");
 
-    var html = `
-    <div class="card card-block w-30 mx-auto" id="desplegable" >
+    var html = `<div class="card card-block w-30 mx-auto" id="desplegable" >
                     <div class="row" style="text-align: center; margin-bottom: 20px;">
                         <h2><i class="fas fa-shopping-basket" style="margin-right: 10px;"></i>Lista de la compra</h2>
                     </div>
                     <div class="row h-100"style="justify-content: center;" >
-                        <ul id="listaCompra" class="list-group list-group-flush" style="width: 80%;">`
-
-                        if(pedidoGuardado["Leche"]>0){
-                            html +=`<li class="list-group-item">`
-                            html +=  "Leche: " + pedidoGuardado["Leche"];
-                            html +=` 
-                                    <button onclick="sumaPedido(1);">+</button>
-                                    <button onclick="restaPedido(1);">-</button>
-                                    <button onclick="this.parentNode.remove(); quitaPedido(1);"
-                                    style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button> 
-                                    </li>`
-                        }
-
-                        if(pedidoGuardado["Huevo"]>0){
-                            html +=`<li class="list-group-item">`
-                            html +=  "Huevo: " + pedidoGuardado["Huevo"];
-                            html +=`
-                                    <button onclick="sumaPedido(2);">+</button>
-                                    <button onclick="restaPedido(2);">-</button>
-                                    <button onclick="this.parentNode.remove(); quitaPedido(2);"
-                                    style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button> 
-                                    </li>`
-                        }
-
-                        if(pedidoGuardado["Carne"]>0){
-                            html +=`<li class="list-group-item">`
-                            html +=  "Carne: " + pedidoGuardado["Carne"];
-                            html +=`
-                                    <button onclick="sumaPedido(3);">+</button>   
-                                    <button onclick="restaPedido(3);">-</button> 
-                                    <button onclick="this.parentNode.remove();  quitaPedido(3);"
-                                    style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button> 
-                                    </li>`
-                        }
-
-                        if(pedidoGuardado["Pescado"]>0){
-                            html +=`<li class="list-group-item">`
-                            html +=  "Pescado: " + pedidoGuardado["Pescado"];
-                            html +=` 
-                                    <button onclick="sumaPedido(4);">+</button>
-                                    <button onclick="restaPedido(4);">-</button> 
-                                    <button onclick="this.parentNode.remove();  quitaPedido(4);"
-                                    style="margin-left: 7px; color: white;" type="button" class="close" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button> 
-                                    </li>`
-                        }
-
-                            
-    html += `  </ul>
-                <div class="col-12">
-                <button onclick="comprarPedido()" >Comprar</button>
-                    </div>
+                        <ul id="listaCompra" class="list-group list-group-flush">
+                        </ul>
+                    <div class="col-12">
+                        <button onclick="comprarPedido()" >Comprar</button>
+                </div>
+                `
     
-        `
         div.innerHTML = html;
-    
-    
 }
 
 function cambiarAOpciones()
@@ -574,56 +641,45 @@ function cambiarAOpciones()
 var sacado = false;
 function sacarDesplegable(button)
 {
-
-    if(button.id == "Carrito")
+    var idDesplegable = "desplegable" + button.id;
+    
+    if(document.getElementById(idDesplegable).style.display == "inline")
     {
-
-        var idDesplegable = "desplegable" + button.id;
-        if(sacado == false)
-        {
-            document.getElementById(idDesplegable).style.display = "inline";
-            document.getElementById("divDesplegable").style.display = "inline";
-            // El resto de botones desabilitados mientras.
-            document.getElementById("Opciones").disabled = true
-            actualizaPedido=true;
-            mostrarPedidos=true;
-            
-            sacado = true;
-        }
-        else if(sacado == true)
-        {
-            document.getElementById(idDesplegable).style.display = "none";
-            document.getElementById("divDesplegable").style.display = "none";
-            // El resto de botones se vuelven a habilitar.
-            document.getElementById("Opciones").disabled = false;
-            actualizaPedido=false;
-            sacado = false;
-            mostrarPedidos=false;
-        }
+        document.getElementById("divDesplegable").style.display = "none";
+        document.getElementById(idDesplegable).style.display = "none"    
     }
-    if(button.id == "Opciones")
+    else
     {
-        var idDesplegable = "desplegable" + button.id;
-        if(sacado == false)
+        var buttons = document.getElementsByClassName("sacaDesplegable");
+        for(var i = 0; i < buttons.length; i++)
         {
-            document.getElementById(idDesplegable).style.display = "inline";
-            document.getElementById("divDesplegable").style.display = "inline";
-            // El resto de botones desabilitados mientras.
-            cambiarAOpciones();
-            document.getElementById("Carrito").disabled = true
-            sacado = true;
+            var idDesplegable = "desplegable" + buttons[i].id;
+            if(buttons[i].id == button.id)
+            {
+                document.getElementById(idDesplegable).style.display = "inline";
+                if(button.id == "Carrito")
+                {
+                    actualizaPedido=true;
+                    mostrarPedidos=true;
+                    cambiarACarrito();
+                }
+                if(button.id == "Opciones")
+                {
+                    cambiarAOpciones();
+                    actualizaPedido=false;
+                    mostrarPedidos=false;
+                }
+            }
+            else
+            {
+                document.getElementById(idDesplegable).style.display = "none";
+            }
         }
-        else if(sacado == true)
-        {
-            document.getElementById(idDesplegable).style.display = "none";
-            document.getElementById("divDesplegable").style.display = "none";
-            // El resto de botones se vuelven a habilitar.
-            document.getElementById("Carrito").disabled = false;
-            sacado = false;
-        }
+
+        document.getElementById("divDesplegable").style.display = "inline";    
     }
+    
 }
-
 
 
 
@@ -722,7 +778,7 @@ function mostrarHora()
     //Establece Pedido
     setPedido();
     if(mostrarPedidos==true){
-        cambiarACarrito();
+        colocarPedidos();
     }
     
    
