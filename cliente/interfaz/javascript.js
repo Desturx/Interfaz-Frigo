@@ -410,6 +410,7 @@ function setPedido(){
 
 function comprarPedido(){
     
+    
     if(pedidoGuardado["Leche"]>0 || pedidoGuardado["Huevo"]>0 || pedidoGuardado["Carne"]>0 || pedidoGuardado["Pescado"]>0 ){
         
        
@@ -437,6 +438,7 @@ function comprarPedido(){
         pedidoGuardado["Huevo"]=0;
         pedidoGuardado["Carne"]=0;
         pedidoGuardado["Pescado"]=0;
+        compradoPedido=true;
 
     }
     else{
@@ -467,7 +469,7 @@ function comprarPedido(){
 
 
 
-var actualizaPedido=false;
+
 
 function colocarPedidos()
 {
@@ -590,8 +592,30 @@ function colocarPedidos()
     }
 }
 
+var compradoPedido=false;
+
+function limpiaPedidos(){
+    var div = document.getElementById("divDesplegable");
+
+    var html = `<div class="card card-block w-30 mx-auto" id="desplegable" >
+                    <div class="row" style="text-align: center; margin-bottom: 20px;">
+                        <h2><i class="fas fa-shopping-basket" style="margin-right: 10px;"></i>Lista de la compra</h2>
+                    </div>
+                    <div class="row h-100"style="justify-content: center;" >
+                        <ul id="listaCompra" class="list-group list-group-flush">
+                        </ul>
+                    <div class="col-12">
+                        <button class="btnSumaYResta btnSumaYResta-2 btnSumaYResta-2h" onclick="comprarPedido()" >Comprar</button>
+                </div>
+                `
+    
+    div.innerHTML = html;
+    compradoPedido=false;
+}
+
 function cambiarACarrito()
 {
+    console.log("encontrado");
     var div = document.getElementById("divDesplegable");
 
     var html = `<div class="card card-block w-30 mx-auto" id="desplegable" >
@@ -607,6 +631,7 @@ function cambiarACarrito()
                 `
     
         div.innerHTML = html;
+        
 }
 
 function cambiarAOpciones()
@@ -777,9 +802,12 @@ function mostrarHora()
 
     //Establece Pedido
     setPedido();
-    if(mostrarPedidos==true){
-        colocarPedidos();
+    colocarPedidos();
+    
+    if( mostrarPedidos==true && compradoPedido==true){
+        limpiaPedidos();
     }
+    
     
    
 }
