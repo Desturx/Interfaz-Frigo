@@ -644,18 +644,14 @@ function cambiarAOpciones()
     <div class="row h-100"style="justify-content: center;" >
         <ul class="list-group list-group-flush" style="width: 80%;">
             <li class="list-group-item">
-            Modo oscuro
-            <input type="checkbox">
+            <button class="btnSumaYResta btnSumaYResta-2 btnSumaYResta-2h">Modo oscuro Off</button>
             </li>
-            <li class="list-group-item" onclick="activarSensor();">
-            Apagar/Encender sensor 
+            <li class="list-group-item">
+            <button onclick="activarSensor();" id="sensorProximidad" class="btnSumaYResta btnSumaYResta-2 btnSumaYResta-2h"> Sensor apagado </button>
             </li>
             <li class="list-group-item">
              Otra opción
             </li>
-          <div class="col-12">
-            <button>Guardar</button>
-          </div>
     </div>
     `  
     div.innerHTML = html;
@@ -810,7 +806,11 @@ function mostrarHora()
 
     //Establece Pedido
     setPedido();
-    colocarPedidos();
+    if(mostrarPedidos == true)
+    {
+
+        colocarPedidos();
+    }
     
     if( mostrarPedidos==true && compradoPedido==true){
         limpiaPedidos();
@@ -844,9 +844,12 @@ function activarSensor(){
     
     if(ajustesPresencia==false){
         ajustesPresencia=true;
+        document.getElementById("sensorProximidad").innerHTML = "Sensor encendido";
     }
     else{
         ajustesPresencia=false;
+        document.getElementById("sensorProximidad").innerHTML = "Sensor Apagado";
+
     }
 }
 
