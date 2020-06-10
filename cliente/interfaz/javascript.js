@@ -647,11 +647,11 @@ function cambiarAOpciones()
             Modo oscuro
             <input type="checkbox">
             </li>
-            <li class="list-group-item">
-            <button type="button" class="btn btn-primary" onclick="activarSensor();">Apagar/Encender sensor </button>
+            <li class="list-group-item" onclick="activarSensor();">
+            Apagar/Encender sensor 
             </li>
             <li class="list-group-item">
-            <button type="button" class="btn btn-primary">   otra opción </button>
+             Otra opción
             </li>
           <div class="col-12">
             <button>Guardar</button>
@@ -780,7 +780,7 @@ function mostrarHora()
     //Temperatura que quiere el cliente
     if(apagarMotorF==false){
         ControlTempF();
-        console.log("entra aqui");
+        
     }
 
     if(apagarMotorC==false){
@@ -841,6 +841,7 @@ function mostrarHoraInicio()
     
 /* Sensores */
 function activarSensor(){
+    
     if(ajustesPresencia==false){
         ajustesPresencia=true;
     }
