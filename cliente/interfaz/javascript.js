@@ -778,8 +778,16 @@ function mostrarHora()
     setTimeout(mostrarHora, 1000);
  
     //Temperatura que quiere el cliente
-    ControlTempF();
-    ControlTempC();
+    if(apagarMotorF==false){
+        ControlTempF();
+        console.log("entra aqui");
+    }
+
+    if(apagarMotorC==false){
+        ControlTempC();
+    }
+    
+    
 
     //Grafico (da fallo al iniciar, pero va)
     sacarDato();
@@ -1144,3 +1152,36 @@ function alertaConsumo(){
     }
 }
 
+var apagarMotorF=false;
+var apagarMotorC=false;
+
+function ApagarF(){
+    if( apagarMotorF == false){
+        apagarMotorF= true;
+        frigo.refrigeradorMotor=0;
+        document.getElementById("ApagaFrigo").setAttribute("class", "iconoBotonesOn");
+    }
+    else{
+        apagarMotorF = false;
+        document.getElementById("ApagaFrigo").setAttribute("class", "iconoBotonesOff");
+    }
+    console.log("Boton ",apagarMotorF," Motor en modo: ",frigo.refrigeradorMotor);
+
+}
+
+function ApagarC(){
+
+    if( apagarMotorC == false){
+        apagarMotorC= true;
+        frigo.congeladorMotor=0;
+        document.getElementById("ApagaCon").setAttribute("class", "iconoBotonesOn");
+    }
+    else{
+        apagarMotorC = false;
+        
+        document.getElementById("ApagaCon").setAttribute("class", "iconoBotonesOff");
+    }
+    console.log("Motor ",frigo.congeladorMotor);
+
+     
+}
